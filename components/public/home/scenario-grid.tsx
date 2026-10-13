@@ -1,6 +1,16 @@
 import { useLanguage } from "@/contexts/language-context"
 import { chineseScenarios, englishScenarios, swahiliScenarios } from "@/data/scenario-grid"
 import { motion } from "motion/react"
+import { Bike, Building2, CarFront, PlugZap, Truck, Wrench } from "lucide-react"
+
+const scenarioIcons = {
+  vehicles: CarFront,
+  "boda-tuk-tuk": Bike,
+  commercial: Truck,
+  fleet: Building2,
+  charging: PlugZap,
+  "technical-support": Wrench,
+}
 
 export default function ScenarioGrid() {
   const { currentLang } = useLanguage()
@@ -35,7 +45,9 @@ export default function ScenarioGrid() {
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {scenarios.map((scenario, index) => (
+          {scenarios.map((scenario, index) => {
+            const Icon = scenarioIcons[scenario.id as keyof typeof scenarioIcons]
+            return (
             <motion.div
               key={scenario.id}
               initial={{ opacity: 0, y: 30 }}
@@ -45,15 +57,8 @@ export default function ScenarioGrid() {
               className="group flex flex-col overflow-hidden rounded-none border border-gray-100 bg-white shadow-xs transition-all duration-300 hover:shadow-lg"
               id={`scenario-card-${scenario.id}`}
             >
-              {/* Card Image Container */}
-              <div className="relative aspect-video overflow-hidden bg-slate-50">
-                <img
-                  src={scenario.imageUrl}
-                  alt={scenario.title}
-                  referrerPolicy="no-referrer"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent"></div>
+              <div className="flex aspect-video items-center justify-center bg-emerald-50">
+                <Icon className="size-16 text-emerald-700" strokeWidth={1.4} aria-hidden="true" />
               </div>
 
               {/* Card Text Content */}
@@ -68,7 +73,8 @@ export default function ScenarioGrid() {
                 </div>
               </div>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

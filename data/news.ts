@@ -1,171 +1,79 @@
-export type NewsCategory = "sustainable-news" | "events" | "success-stories"
+import type { Language } from "@/types/types"
+
+export type NewsCategory = "vehicles" | "charging" | "fleet"
 
 export interface NewsArticle {
   id: number
   slug: string
   category: NewsCategory
-  title: string
-  date: string // formatted string e.g. "2025.06.25"
-  excerpt: string
   imageUrl: string
-  isFeatured?: boolean
-  content?: string // Full article content for details page
+  title: Record<Language, string>
+  excerpt: Record<Language, string>
+  content: Record<Language, string>
 }
 
 export const newsData: NewsArticle[] = [
-  // ─── Success Stories ────────────────────────────────────────────────────────
   {
     id: 1,
-    slug: "donar-charging-station-kenya",
-    category: "success-stories",
-    title: "Donar charging station in Kenya",
-    date: "2025.06.25",
-    excerpt:
-      "In addition to conventional DC charging stations, the charging stations built by Donar in Kenya also have distributed solar energy storage charging stations...",
-    imageUrl: "/story-1.jpeg",
-    isFeatured: true,
-    content: `In addition to conventional DC charging stations, the charging stations built by Donar in Kenya also have distributed solar energy storage charging stations installed, bringing more economically valuable green energy to the local market.
-
-The project represents a significant milestone in Kenya's transition to sustainable transportation infrastructure. By integrating solar energy storage systems with traditional charging stations, Donar has created a hybrid solution that addresses both energy reliability and environmental concerns.
-
-Key features of the Kenya charging station project include:
-
-• **Solar Integration**: Each station is equipped with high-efficiency solar panels that capture and store energy during daylight hours
-• **Energy Storage**: Advanced battery systems ensure consistent power availability even during grid outages
-• **Smart Grid Connectivity**: Stations are connected to a smart grid that optimizes energy distribution based on demand
-• **Local Economic Impact**: The project has created numerous jobs and supports local businesses through reduced energy costs
-
-The success of this project has positioned Kenya as a leader in sustainable EV infrastructure development in East Africa. Donar continues to expand its presence across the region, with plans to deploy additional stations in major cities and along key transportation routes.
-
-This initiative aligns with Kenya's commitment to reducing carbon emissions and promoting renewable energy adoption as outlined in the country's Vision 2030 development strategy.`,
+    slug: "choosing-an-electric-vehicle",
+    category: "vehicles",
+    imageUrl: "/contact_nbanner.jpeg",
+    title: {
+      en: "Choosing an electric vehicle for your needs",
+      sw: "Kuchagua gari la umeme linalokufaa",
+      zh: "如何选择适合自己的电动汽车",
+    },
+    excerpt: {
+      en: "Start with the journeys you make, the people or goods you carry, and how you will charge. Compare options for personal, boda boda, tuk-tuk and business use.",
+      sw: "Anza kwa kuangalia safari zako, watu au mizigo unayobeba na mahali pa kuchaji. Linganisha chaguo kwa matumizi binafsi, boda boda, tuk-tuk na biashara.",
+      zh: "从日常行程、载客或载货需求以及充电方式入手，比较个人出行、电动摩托车、三轮车及商业用途的选择。",
+    },
+    content: {
+      en: "Choosing an electric vehicle starts with understanding the work it needs to do. Consider typical trip distances, passengers or cargo, daily operating hours and where the vehicle can be charged.\n\nGreenRide supplies new electric vehicles, tuk-tuks and light commercial vehicles, and also offers second-hand EV valuation and trade-in support. The right choice depends on your use case and budget, so compare options with an experienced adviser before buying.",
+      sw: "Kuchagua gari la umeme huanza kwa kuelewa kazi litakayofanya. Fikiria umbali wa kawaida wa safari, abiria au mizigo, saa za matumizi ya kila siku na mahali pa kuchaji gari.\n\nGreenRide hutoa magari mapya ya umeme, tuk-tuk na magari mepesi ya biashara, pamoja na tathmini na usaidizi wa kubadilishana magari yaliyotumika. Chaguo linalofaa hutegemea matumizi na bajeti yako; linganisha chaguo kwa ushauri wa mtaalamu kabla ya kununua.",
+      zh: "选择电动汽车，首先要明确车辆承担的任务。考虑常见行程距离、乘客或货物、每日运营时间，以及车辆可以在哪里充电。\n\nGreenRide 提供全新电动汽车、电动三轮车和轻型商用车，也提供二手电动汽车估值和置换支持。合适的选择取决于具体用途和预算，购车前可咨询专业人员并比较方案。",
+    },
   },
   {
     id: 2,
-    slug: "donar-charging-station-vietnam",
-    category: "success-stories",
-    title: "Donar charging station in Vietnam",
-    date: "2025.06.25",
-    excerpt:
-      "Donar's charging stations in Vietnam have both DC charging stations and AC charging stations, providing local users with the ultimate charging...",
-    imageUrl: "/story-2.jpeg",
+    slug: "planning-ev-charging",
+    category: "charging",
+    imageUrl: "/products/pocket-1.jpeg",
+    title: {
+      en: "Planning charging for a home, business or public site",
+      sw: "Kupanga uchaji nyumbani, kwenye biashara au eneo la umma",
+      zh: "为住宅、企业或公共场所规划充电",
+    },
+    excerpt: {
+      en: "AC charging can suit places where vehicles park for several hours; DC fast charging can support sites that need quicker turnaround. Begin with dwell time and vehicle needs.",
+      sw: "Chaji ya AC inaweza kufaa maeneo ambako magari husimama kwa saa kadhaa; chaji ya haraka ya DC inaweza kufaa maeneo yanayohitaji magari yarudi barabarani haraka.",
+      zh: "交流充电适合车辆停放数小时的场所；直流快充可服务于需要快速周转的地点。规划应从停留时间和车辆需求开始。",
+    },
+    content: {
+      en: "Charging plans should match how long vehicles stay parked and how quickly they need to return to the road. AC chargers, typically around 7 kW, can suit homes, offices and apartment buildings where vehicles remain for several hours.\n\nDC fast chargers, from around 20 kW to 120 kW and above, can suit malls, service stations, highway rest stops and fleet depots. GreenRide supports site assessment, equipment selection, installation and station operation. Actual design depends on the site and vehicles.",
+      sw: "Mpango wa kuchaji unapaswa kuzingatia muda ambao magari yamesimama na kasi ya kuyarejesha barabarani. Chaja za AC, kwa kawaida karibu 7 kW, zinaweza kufaa nyumba, ofisi na majengo ya makazi ambako magari hukaa kwa saa kadhaa.\n\nChaja za haraka za DC, kuanzia takriban 20 kW hadi 120 kW au zaidi, zinaweza kufaa maduka, vituo vya huduma, mapumziko ya barabara kuu na maeneo ya magari ya biashara. GreenRide husaidia katika tathmini ya eneo, uchaguzi wa vifaa, usakinishaji na uendeshaji wa kituo. Muundo halisi hutegemea eneo na magari.",
+      zh: "充电方案应与车辆停放时长及再次投入运营的速度要求相匹配。交流充电桩通常约为 7 kW，适用于车辆停放数小时的住宅、办公室和公寓。\n\n直流快充功率约从 20 kW 到 120 kW 及以上，可用于商场、服务站、高速公路休息区和车队停车场。GreenRide 提供场地评估、设备选型、安装和充电站运营支持。实际设计需根据场地和车辆确定。",
+    },
   },
   {
     id: 3,
-    slug: "donar-charging-station-china",
-    category: "success-stories",
-    title: "Donar charging station in China",
-    date: "2025.04.27",
-    excerpt:
-      "Donar's charging stations in China are installed on highways, residential areas, tourist attractions, etc., making it convenient for electric vehicle...",
-    imageUrl: "/story-3.jpeg",
-  },
-
-  // ─── Sustainable News ────────────────────────────────────────────────────────
-  {
-    id: 4,
-    slug: "donar-green-energy-initiative",
-    category: "sustainable-news",
-    title: "Donar Green Energy Initiative 2025",
-    date: "2025.05.10",
-    excerpt:
-      "Donar accelerates its commitment to renewable energy integration across all EV charging infrastructure deployments in Sub-Saharan Africa...",
-    imageUrl: "/scenario-gird/icj1.jpeg",
-    isFeatured: true,
-    content: `Donar accelerates its commitment to renewable energy integration across all EV charging infrastructure deployments in Sub-Saharan Africa with the launch of its ambitious Green Energy Initiative 2025.
-
-This comprehensive initiative represents a $50 million investment in sustainable charging infrastructure across the continent. The program aims to deploy 500 solar-powered charging stations by 2027, significantly reducing reliance on grid electricity and promoting clean energy adoption.
-
-The initiative focuses on three core pillars:
-
-**Renewable Integration**
-- Solar panel installation at all new charging stations
-- Wind energy integration where feasible
-- Advanced energy storage systems for 24/7 operation
-- Smart energy management to optimize renewable usage
-
-**Community Impact**
-- Local workforce development and training programs
-- Partnerships with local businesses and suppliers
-- Educational initiatives on sustainable technology
-- Job creation in renewable energy sector
-
-**Environmental Goals**
-- Reduction of carbon emissions by 40% across operations
-- Zero-emission charging solutions
-- Sustainable materials and construction practices
-- Wildlife and environmental protection measures
-
-"The Green Energy Initiative 2025 represents our strongest commitment yet to sustainable development in Africa," says Donar's CEO. "We're not just building charging stations; we're building a sustainable future for communities across the continent."
-
-The initiative has already received support from various government agencies and international organizations, recognizing its potential to drive meaningful change in Africa's energy landscape.`,
-  },
-  {
-    id: 5,
-    slug: "solar-powered-charging-expansion",
-    category: "sustainable-news",
-    title: "Solar-Powered Charging Expansion",
-    date: "2025.04.15",
-    excerpt:
-      "Expanding solar-integrated EV charging stations across East Africa to deliver clean, reliable energy to local communities and fleet operators...",
-    imageUrl: "/scenario-gird/icj2.jpeg",
-  },
-  {
-    id: 6,
-    slug: "carbon-neutral-charging-network",
-    category: "sustainable-news",
-    title: "Building a Carbon-Neutral Charging Network",
-    date: "2025.03.22",
-    excerpt:
-      "Our latest carbon-neutral initiative targets zero-emission charging solutions by 2030, leveraging grid-scale energy storage and renewable sources...",
-    imageUrl: "/scenario-gird/icj3.jpeg",
-  },
-
-  // ─── Events ─────────────────────────────────────────────────────────────────
-  {
-    id: 7,
-    slug: "africa-ev-summit-2025",
-    category: "events",
-    title: "Africa EV Summit 2025",
-    date: "2025.06.01",
-    excerpt:
-      "Donar participated in the Africa EV Summit 2025 in Nairobi, showcasing its latest fast-charging technology and microgrid energy solutions...",
-    imageUrl: "/scenario-gird/icj4.jpeg",
-    isFeatured: true,
-    content: `Donar participated in the Africa EV Summit 2025 in Nairobi, showcasing its latest fast-charging technology and microgrid energy solutions to industry leaders and policymakers from across the continent.
-
-The summit, held at the Kenyatta International Convention Centre, brought together over 500 delegates from 35 African countries to discuss the future of electric mobility in Africa. Donar's presence at the event highlighted the company's commitment to driving the EV revolution across the continent.
-
-**Key Highlights from Donar's Exhibition:**
-
-• **Ultra-Fast Charging Technology**: Demonstration of Donar's latest 350kW DC fast chargers capable of delivering 80% charge in under 15 minutes
-• **Microgrid Solutions**: showcase of integrated solar-powered charging stations designed for off-grid applications
-• **Smart Management Platform**: Live demonstration of Donar's cloud-based charging station management system
-• **Partnership Announcements**: Strategic partnerships with local energy companies and government agencies
-
-"Participating in the Africa EV Summit 2025 was an incredible opportunity to connect with key stakeholders and showcase our commitment to Africa's sustainable future," said Donar's Regional Director for Africa. "The enthusiasm and support we received validates our vision for electrified mobility across the continent."
-
-During the summit, Donar also participated in panel discussions on infrastructure development, renewable energy integration, and policy frameworks for EV adoption. The company's experts shared insights on overcoming challenges unique to the African market, including grid reliability, infrastructure gaps, and affordability concerns.
-
-The event concluded with Donar announcing plans to invest an additional $20 million in African markets over the next three years, focusing on Kenya, Nigeria, South Africa, and Ethiopia as priority markets.`,
-  },
-  {
-    id: 8,
-    slug: "donar-partner-conference",
-    category: "events",
-    title: "Donar Global Partner Conference",
-    date: "2025.05.20",
-    excerpt:
-      "Our annual global partner conference brought together distributors and partners from over 30 countries to align on Donar's 2025–2030 expansion roadmap...",
-    imageUrl: "/scenario-gird/icj5.jpeg",
-  },
-  {
-    id: 9,
-    slug: "smart-charging-expo-guangzhou",
-    category: "events",
-    title: "Smart Charging Expo – Guangzhou",
-    date: "2025.03.14",
-    excerpt:
-      "Donar showcased its full product lineup at the Smart Charging Expo in Guangzhou, highlighting its distributed ESS and AC/DC charging product portfolio...",
-    imageUrl: "/scenario-gird/icj6.jpeg",
+    slug: "electric-fleet-transition",
+    category: "fleet",
+    imageUrl: "/contact_nbanner.jpeg",
+    title: {
+      en: "Planning a fleet transition to electric",
+      sw: "Kupanga mpito wa magari ya biashara kwenda umeme",
+      zh: "规划车队电动化转型",
+    },
+    excerpt: {
+      en: "A phased transition starts with the right vehicle mix, a practical rollout plan and a clear view of total cost of ownership. Leasing may help manage upfront costs.",
+      sw: "Mpito huanza kwa kuchagua mchanganyiko wa magari unaofaa, kupanga utekelezaji na kuelewa gharama za jumla. Ukodishaji unaweza kusaidia kudhibiti gharama za awali.",
+      zh: "分阶段转型应从合适的车型组合、可行的部署计划和总拥有成本分析开始。租赁可帮助管理前期资金需求。",
+    },
+    content: {
+      en: "Fleet electrification works best when it is planned around daily routes and operating needs. Review which vehicles are used, where they return between trips, and what charging access is available.\n\nGreenRide offers fleet sales consultation to help organisations consider vehicle selection, phased rollout and total cost of ownership. Flexible leasing options are also available for customers who prefer to avoid the full upfront cost of ownership.",
+      sw: "Ubadilishaji wa magari ya biashara kwenda umeme hufaulu zaidi unapopangwa kulingana na safari na shughuli za kila siku. Kagua magari yanayotumika, mahali yanaporudi kati ya safari na upatikanaji wa chaji.\n\nGreenRide hutoa ushauri wa mauzo ya magari ya biashara ili kusaidia mashirika kuzingatia uchaguzi wa magari, mpito wa hatua kwa hatua na gharama ya jumla ya umiliki. Pia kuna chaguo za ukodishaji unaonyumbulika kwa wateja wanaopendelea kuepuka gharama yote ya awali.",
+      zh: "车队电动化应围绕日常路线和运营需求进行规划。评估现有车辆用途、车辆在行程间返回的位置，以及充电条件。\n\nGreenRide 提供车队销售咨询，协助机构考虑车辆选型、分阶段部署和总拥有成本。对于希望避免一次性承担全部购车成本的客户，也提供灵活租赁方案。",
+    },
   },
 ]

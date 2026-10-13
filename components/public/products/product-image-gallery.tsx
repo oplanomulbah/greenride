@@ -39,7 +39,7 @@ export function ProductImageGallery({ images, name }: ProductImageGalleryProps) 
               onClick={() => setActiveIndex(idx)}
               className={`relative w-20 h-20 rounded-xl border-2 overflow-hidden p-2 bg-white transition-all duration-200 cursor-pointer ${
                 activeIndex === idx
-                  ? "border-[#1D6DF2] scale-105 shadow-sm"
+                  ? "border-electric scale-105 shadow-sm"
                   : "border-gray-200 hover:border-gray-300"
               }`}
               aria-label={`Show image ${idx + 1}`}

@@ -13,8 +13,8 @@ export default function HomeHeroSection() {
     >
       {/* Hero Image */}
       <img
-        src="/home-hero.jpg"
-        alt="Electric vehicle charging infrastructure"
+        src="/contact_nbanner.jpeg"
+        alt="An electric vehicle connected to charging equipment"
         referrerPolicy="no-referrer"
         className="absolute inset-0 h-full w-full object-cover"
       />

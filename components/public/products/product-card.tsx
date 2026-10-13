@@ -109,7 +109,7 @@ export function ProductCard({ product, className = "" }: ProductCardProps) {
       )}
 
       {/* Spacing if only one or no images */}
-      {images.length <= 1 && <div className="mb-6 h-[10px]"></div>}
+      {images.length <= 1 && <div className="mb-6 h-2.5"></div>}
 
       <p className="mb-8 flex-1 text-sm leading-relaxed text-gray-600">
         {t(product.summaryKey)}

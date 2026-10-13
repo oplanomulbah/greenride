@@ -18,9 +18,8 @@ const serviceKeys = [
 const serviceIcons = [CarFront, Truck, Truck, ClipboardCheck, BatteryCharging, BatteryCharging, Wrench]
 
 const projectImages = [
-  { src: "/story-1.jpeg", alt: "Electric vehicle charging equipment" },
-  { src: "/story-2.jpeg", alt: "Electric vehicle charging station" },
-  { src: "/story-3.jpeg", alt: "Charging infrastructure for electric vehicles" },
+  { src: "/contact_nbanner.jpeg", alt: "An electric vehicle connected to charging equipment" },
+  { src: "/products/pocket-1.jpeg", alt: "Portable electric vehicle charging equipment" },
 ]
 
 export default function AboutClient() {
@@ -104,7 +103,7 @@ export default function AboutClient() {
           </h2>
           <p className="leading-7 text-gray-600">{t("about.impactBody")}</p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           {projectImages.map((image) => (
             <div key={image.src} className="relative aspect-[4/3] overflow-hidden bg-gray-100">
               <Image src={image.src} alt={image.alt} fill className="object-cover transition-transform duration-500 hover:scale-105" />

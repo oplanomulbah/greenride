@@ -46,7 +46,7 @@ export const metadata: Metadata = {
       "GreenRide makes electric mobility accessible in Kenya with EV sales, fleet solutions, charging infrastructure and technical support.",
     images: [
       {
-        url: "/home-hero.jpg",
+        url: "/contact_nbanner.jpeg",
         alt: "Electric mobility and charging infrastructure",
       },
     ],
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "GreenRide | Electric Mobility in Kenya",
     description:
       "GreenRide makes electric mobility accessible in Kenya with EV sales, fleet solutions, charging infrastructure and technical support.",
-    images: ["/home-hero.jpg"],
+    images: ["/contact_nbanner.jpeg"],
   },
   robots: {
     index: true,
