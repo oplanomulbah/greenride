@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ChangeEvent } from "react"
+import { useState, useRef, type ChangeEvent, type SyntheticEvent } from "react"
 import {
   Play,
   Pause,
@@ -6,7 +6,6 @@ import {
   VolumeX,
   Maximize,
   Minimize,
-  Zap,
 } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { translate } from "@/lib/translations"
@@ -17,53 +16,63 @@ export default function VideoPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0) // value from 0 to 100
   const [currentTimeSec, setCurrentTimeSec] = useState(0)
+  const [totalDurationSec, setTotalDurationSec] = useState(0)
   const [isMuted, setIsMuted] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const [playbackError, setPlaybackError] = useState<string | null>(null)
 
-  const totalDurationSec = 111 // 01:51 total duration
   const playerRef = useRef<HTMLDivElement>(null)
-  const timerRef = useRef<NodeJS.Timeout | null>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
-  useEffect(() => {
-    if (isPlaying) {
-      timerRef.current = setInterval(() => {
-        setCurrentTimeSec((prev) => {
-          if (prev >= totalDurationSec) {
-            setIsPlaying(false)
-            setProgress(0)
-            return 0
-          }
-          const nextTime = prev + 1
-          setProgress((nextTime / totalDurationSec) * 100)
-          return nextTime
-        })
-      }, 1000)
+  const handlePlayPause = async () => {
+    const video = videoRef.current
+    if (!video) return
+
+    if (video.paused) {
+      setPlaybackError(null)
+      try {
+        await video.play()
+      } catch {
+        setPlaybackError("This video could not be played. Please try again.")
+      }
     } else {
-      if (timerRef.current) {
-        clearInterval(timerRef.current)
-      }
+      video.pause()
     }
-
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current)
-      }
-    }
-  }, [isPlaying])
-
-  const handlePlayPause = () => {
-    setIsPlaying(!isPlaying)
   }
 
   const handleScrubberChange = (e: ChangeEvent<HTMLInputElement>) => {
     const val = parseFloat(e.target.value)
+    const video = videoRef.current
+    if (!video || !Number.isFinite(video.duration)) return
+
+    video.currentTime = (val / 100) * video.duration
     setProgress(val)
-    setCurrentTimeSec(Math.floor((val / 100) * totalDurationSec))
+    setCurrentTimeSec(video.currentTime)
+  }
+
+  const handleTimeUpdate = (e: SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget
+    setCurrentTimeSec(video.currentTime)
+    setProgress(video.duration ? (video.currentTime / video.duration) * 100 : 0)
+  }
+
+  const handleLoadedMetadata = (e: SyntheticEvent<HTMLVideoElement>) => {
+    const duration = e.currentTarget.duration
+    setTotalDurationSec(Number.isFinite(duration) ? duration : 0)
+  }
+
+  const handleToggleMute = () => {
+    const video = videoRef.current
+    if (!video) return
+
+    video.muted = !video.muted
+    setIsMuted(video.muted)
   }
 
   const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
+    const wholeSeconds = Math.floor(seconds)
+    const mins = Math.floor(wholeSeconds / 60)
+    const secs = wholeSeconds % 60
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
   }
 
@@ -89,52 +98,53 @@ export default function VideoPlayer() {
           }`}
           id="brand-video-frame"
         >
-          {/* Main Video View Screen */}
-          <div className="relative flex h-full w-full flex-1 flex-col items-center justify-center bg-radial from-white to-emerald-50/70 text-center select-none">
-            {/* Glowing D Animation Logo */}
-            <div className="relative mb-6">
-              {/* Outer Pulsing Aura */}
-              <div
-                className={`absolute inset-0 rounded-full bg-electric/15 blur-2xl transition-all duration-1000 ${isPlaying ? "scale-125 opacity-100" : "scale-90 opacity-40"}`}
-              ></div>
+          {/* Video View Screen */}
+          <div className="relative min-h-0 w-full flex-1 bg-black">
+            <video
+              ref={videoRef}
+              src="/Electric_car_charging_at_station_20261013213500.mp4"
+              poster="/home-hero.jpg"
+              preload="metadata"
+              playsInline
+              muted={isMuted}
+              aria-label={textSlogan}
+              className="h-full w-full object-contain"
+              onLoadedMetadata={handleLoadedMetadata}
+              onTimeUpdate={handleTimeUpdate}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onEnded={() => setIsPlaying(false)}
+              onError={() =>
+                setPlaybackError("This video could not be loaded. Please try again later.")
+              }
+            >
+              Your browser does not support video playback.
+            </video>
 
-              {/* Main Elegant Large D Letter Structure */}
-              <div className="relative z-10 flex h-32 w-32 items-center justify-center rounded-full border-[3px] border-electric bg-white shadow-lg">
-                <span className="font-display relative -left-0.5 text-7xl font-black text-electric select-none">
-                  G
-                </span>
-
-                {/* Electric plug inside a clean badge attached to the side or center */}
-                <div className="absolute top-10 -right-2 flex items-center justify-center rounded-sm border-2 border-electric bg-white px-1 py-1 text-electric shadow-xs">
-                  <Zap className="h-5 w-5 fill-electric" />
-                </div>
-              </div>
-
-              {/* Radial sound waves on play */}
-              {isPlaying && (
-                <>
-                  <div className="absolute -inset-4 animate-ping rounded-full border-2 border-emerald-400/20"></div>
-                  <div className="absolute -inset-8 animate-pulse rounded-full border border-emerald-400/10"></div>
-                </>
-              )}
+            <div className="pointer-events-none absolute top-4 left-4 z-10 text-left">
+              <h4 className="max-w-lg font-display text-lg font-bold tracking-tight text-white drop-shadow-md sm:text-xl">
+                {textSlogan}
+              </h4>
+              <p className="mt-1 font-mono text-xs tracking-widest text-white/80 uppercase drop-shadow-md">
+                {translate(currentLang, "home.videoLabel")} • {formatTime(currentTimeSec)}
+              </p>
             </div>
 
-            {/* Video Subtitle & Slogan */}
-            <h4 className="font-display relative z-10 mb-2 max-w-lg text-xl font-bold tracking-tight text-electric transition-colors sm:text-2xl">
-              {textSlogan}
-            </h4>
-
-            <p className="relative z-10 font-mono text-xs tracking-widest text-slate-400 uppercase">
-              {translate(currentLang, "home.videoLabel")}{" "}
-              • {formatTime(currentTimeSec)}
-            </p>
+            {playbackError && (
+              <p
+                role="alert"
+                className="absolute right-4 bottom-4 left-4 z-10 rounded bg-black/75 p-3 text-sm text-white"
+              >
+                {playbackError}
+              </p>
+            )}
 
             {/* Big center play overlays if paused */}
             {!isPlaying && (
               <button
                 onClick={handlePlayPause}
                 className="absolute inset-0 m-auto flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-emerald-700/90 text-xl text-white shadow-lg transition-all hover:scale-105 hover:bg-emerald-800"
-                aria-label="Play Video"
+                aria-label="Play video"
               >
                 <Play className="h-8 w-8 translate-x-0.5 fill-white" />
               </button>
@@ -152,6 +162,8 @@ export default function VideoPlayer() {
                 step="0.1"
                 value={progress}
                 onChange={handleScrubberChange}
+                disabled={!totalDurationSec}
+                aria-label="Seek video"
                 className="h-1 w-full cursor-pointer appearance-none rounded-lg bg-gray-700 accent-emerald-400 focus:outline-hidden"
                 id="video-scrubber"
               />
@@ -186,8 +198,9 @@ export default function VideoPlayer() {
               <div className="flex items-center gap-4">
                 {/* Volume Button */}
                 <button
-                  onClick={() => setIsMuted(!isMuted)}
+                  onClick={handleToggleMute}
                   className="cursor-pointer p-1 transition-colors hover:text-emerald-300"
+                  aria-label={isMuted ? "Unmute video" : "Mute video"}
                   id="ctrl-volume"
                 >
                   {isMuted ? (
@@ -201,6 +214,7 @@ export default function VideoPlayer() {
                 <button
                   onClick={handleToggleFullscreen}
                   className="cursor-pointer p-1 transition-colors hover:text-emerald-300"
+                  aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
                   id="ctrl-fullscreen"
                 >
                   {isFullscreen ? (
