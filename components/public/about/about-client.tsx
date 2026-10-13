@@ -105,7 +105,7 @@ export default function AboutClient() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {projectImages.map((image) => (
-            <div key={image.src} className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+            <div key={image.src} className="relative aspect-4/3 overflow-hidden bg-gray-100">
               <Image src={image.src} alt={image.alt} fill className="object-cover transition-transform duration-500 hover:scale-105" />
             </div>
           ))}

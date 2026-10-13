@@ -13,7 +13,7 @@ export function ProductImageGallery({ images, name }: ProductImageGalleryProps) 
 
   if (!images || images.length === 0) {
     return (
-      <div className="w-full h-full min-h-[300px] bg-gray-100 flex items-center justify-center text-gray-400 rounded-2xl">
+      <div className="flex h-full min-h-75 w-full items-center justify-center rounded-2xl bg-gray-100 text-gray-400">
         No images available
       </div>
     )
@@ -21,7 +21,7 @@ export function ProductImageGallery({ images, name }: ProductImageGalleryProps) 
 
   return (
     <div className="flex flex-col gap-6 w-full">
-      <div className="relative w-full h-80 md:h-[450px] bg-white rounded-3xl border border-gray-100 p-8 flex items-center justify-center overflow-hidden shadow-xs">
+      <div className="relative flex h-80 w-full items-center justify-center overflow-hidden rounded-3xl border border-gray-100 bg-white p-8 shadow-xs md:h-112">
         <Image
           src={images[activeIndex]}
           alt={`${name} - view ${activeIndex + 1}`}

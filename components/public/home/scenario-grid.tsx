@@ -30,10 +30,8 @@ export default function ScenarioGrid() {
         : "覆盖电动出行全程的解决方案"
 
   return (
-    <section className="relative bg-gradient-to-b from-emerald-50/70 to-white py-20">
+    <section className="relative bg-linear-to-b from-emerald-50/70 to-white py-20">
       {/* Decorative clean outline */}
-      <div className="bg-grid-slate-100 pointer-events-none absolute inset-0 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]"></div>
-
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="mb-16 text-center">
