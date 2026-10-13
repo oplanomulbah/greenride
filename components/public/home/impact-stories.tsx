@@ -103,7 +103,7 @@ const stories: CaseStory[] = [
       sw: "Kutoa miundombinu ya kuaminika ya kuchaji kwa ajili ya teksi na magari ya abiria yanayofanya kazi katika njia za umma.",
       zh: "为往返客运线路、纯电出租车及绿色旅游廊道提供全天候高可靠充电保障，让清洁出行无惧里程焦虑。",
     },
-    image: "/story-3.jpeg",
+    image: "/products/product-hero.jpg",
     icon: Wrench,
     stats: {
       label: { en: "Public Access", sw: "Matumizi ya Umma", zh: "全天候开放" },

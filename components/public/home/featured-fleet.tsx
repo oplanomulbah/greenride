@@ -55,7 +55,7 @@ const fleetItems: FleetVehicle[] = [
       sw: "Anasa tulivu ya hali ya juu kwa viongozi na safari za kibinafsi.",
       zh: "为商务出行和高管接送提供静谧舒适体验与充沛动力。",
     },
-    image: "/products/product-hero.jpeg",
+    image: "/products/product-hero.jpg",
     specs: [
       {
         icon: Gauge,
@@ -110,7 +110,7 @@ const fleetItems: FleetVehicle[] = [
       sw: "Punguza gharama za usambazaji hadi 70% ukiwa na uwezo mkubwa wa kubeba mizigo.",
       zh: "全方位降低市内及周边配送能耗成本达70%，大装载容积保障高出勤率。",
     },
-    image: "/scenario-gird/icj5.jpeg",
+    image: "/scenario-gird/icj5.jpg",
     specs: [
       {
         icon: Gauge,
@@ -220,7 +220,7 @@ const fleetItems: FleetVehicle[] = [
       sw: "Vituo kamili vya kuchaji vya kibiashara kwa ajili ya maeneo ya umma na makampuni.",
       zh: "为商超广场、公路干线、物流园区打造的交钥匙级公共快充基础设施。",
     },
-    image: "/scenario-gird/icj4.jpeg",
+    image: "/scenario-gird/icj4.jpg",
     specs: [
       {
         icon: Gauge,
@@ -275,7 +275,7 @@ const fleetItems: FleetVehicle[] = [
       sw: "Uchaji salama na nafuu wa usiku kwa makazi, ofisi na hoteli.",
       zh: "适合住宅公寓、办公园区、酒店车位停放场景的经济型充电设备。",
     },
-    image: "/scenario-gird/icj1.jpeg",
+    image: "/scenario-gird/icj1.jpg",
     specs: [
       {
         icon: Gauge,

@@ -25,7 +25,18 @@ export const metadata: Metadata = {
   },
   description:
     "GreenRide makes electric mobility accessible in Kenya with EV sales, fleet solutions, charging infrastructure and technical support.",
-  keywords: [
+  icons: [
+    {
+      rel: "icon",
+      url: "/logo.jpeg",
+    },
+    {
+      rel: "apple-touch-icon",
+      url: "/logo.jpeg",
+      sizes: "180x180",
+    },
+  ],
+    keywords: [
     "GreenRide",
     "electric vehicles Kenya",
     "electric mobility",
