@@ -24,7 +24,6 @@ export async function generateMetadata({
       title: `${title} | GreenRide`,
       description,
       url: `/products/${product.slug}`,
-      images: product.imageUrl,
     },
   }
 }

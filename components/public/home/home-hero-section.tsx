@@ -2,6 +2,7 @@ import { useLanguage } from "@/contexts/language-context"
 import React from "react"
 import { motion } from "motion/react"
 import { translate } from "@/lib/translations"
+import Image from "next/image"
 
 export default function HomeHeroSection() {
   const { currentLang } = useLanguage()
@@ -12,11 +13,13 @@ export default function HomeHeroSection() {
       id="hero-banner"
     >
       {/* Hero Image */}
-      <img
+      <Image
         src="/contact_nbanner.jpeg"
         alt="An electric vehicle connected to charging equipment"
-        referrerPolicy="no-referrer"
-        className="absolute inset-0 h-full w-full object-cover"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
       />
 
       {/* Soft elegant gradient overlays to guarantee perfect contrast */}

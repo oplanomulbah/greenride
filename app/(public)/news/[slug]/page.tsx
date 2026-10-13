@@ -41,7 +41,6 @@ export async function generateMetadata({
       title: `${article.title.en} | GreenRide`,
       description: article.excerpt.en,
       url: `/news/${article.slug}`,
-      images: [article.imageUrl],
       type: "article",
       authors: ["Greenride Africa Tech Limited"],
     },
