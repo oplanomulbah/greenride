@@ -1,40 +1,62 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect } from "react"
-import { Language } from "@/types/types"
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useSyncExternalStore,
+} from "react"
+import type { ReactNode } from "react"
+import type { Language } from "@/types/types"
 
 interface LanguageContextType {
   currentLang: Language
   setCurrentLang: (lang: Language) => void
-  isLoaded: boolean
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+const LANGUAGE_EVENT = "greenride-language-change"
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [currentLang, setCurrentLangState] = useState<Language>("en")
-  const [isLoaded, setIsLoaded] = useState(false)
+function getLanguageSnapshot(): Language {
+  if (typeof window === "undefined") return "en"
+  const savedLanguage = localStorage.getItem("app-language")
+  return savedLanguage === "sw" || savedLanguage === "zh" ? savedLanguage : "en"
+}
+
+function subscribeToLanguage(onStoreChange: () => void) {
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === "app-language") onStoreChange()
+  }
+  window.addEventListener(LANGUAGE_EVENT, onStoreChange)
+  window.addEventListener("storage", handleStorage)
+  return () => {
+    window.removeEventListener(LANGUAGE_EVENT, onStoreChange)
+    window.removeEventListener("storage", handleStorage)
+  }
+}
+
+function getServerLanguageSnapshot(): Language {
+  return "en"
+}
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const currentLang = useSyncExternalStore(
+    subscribeToLanguage,
+    getLanguageSnapshot,
+    getServerLanguageSnapshot
+  )
 
   useEffect(() => {
-    const savedLang = localStorage.getItem("app-language") as Language | null
-    if (savedLang && ["en", "sw", "zh"].includes(savedLang)) {
-      setCurrentLangState(savedLang)
-      document.documentElement.lang = savedLang
-    } else {
-      localStorage.setItem("app-language", "en")
-      document.documentElement.lang = "en"
-    }
-    setIsLoaded(true)
-  }, [])
+    document.documentElement.lang = currentLang
+  }, [currentLang])
 
   const setCurrentLang = (lang: Language) => {
-    setCurrentLangState(lang)
     localStorage.setItem("app-language", lang)
-    document.documentElement.lang = lang
+    window.dispatchEvent(new Event(LANGUAGE_EVENT))
   }
 
   return (
-    <LanguageContext.Provider value={{ currentLang, setCurrentLang, isLoaded }}>
+    <LanguageContext.Provider value={{ currentLang, setCurrentLang }}>
       {children}
     </LanguageContext.Provider>
   )

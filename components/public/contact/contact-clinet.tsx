@@ -26,6 +26,21 @@ export default function ContactClient() {
     setSubmitted(true)
   }
 
+  const handleInvalid = (
+    event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const field = event.currentTarget
+    field.setCustomValidity(
+      field.validity.typeMismatch
+        ? t("contact.invalidEmail")
+        : t("contact.required")
+    )
+  }
+
+  const clearValidation = (
+    event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => event.currentTarget.setCustomValidity("")
+
   const contactCards = [
     {
       icon: <Mail className="size-6 text-white" />,
@@ -90,6 +105,8 @@ export default function ContactClient() {
                 autoComplete="name"
                 value={form.name}
                 onChange={handleChange}
+                onInvalid={handleInvalid}
+                onInput={clearValidation}
                 required
                 className="w-full border border-gray-300 px-3.5 py-3 text-sm text-gray-700 outline-none focus:border-emerald-700 focus:ring-2 focus:ring-emerald-700/20"
               />
@@ -107,6 +124,8 @@ export default function ContactClient() {
                 autoComplete="email"
                 value={form.email}
                 onChange={handleChange}
+                onInvalid={handleInvalid}
+                onInput={clearValidation}
                 required
                 className="w-full border border-gray-300 px-3.5 py-3 text-sm text-gray-700 outline-none focus:border-emerald-700 focus:ring-2 focus:ring-emerald-700/20"
               />
@@ -122,6 +141,8 @@ export default function ContactClient() {
                 name="message"
                 value={form.message}
                 onChange={handleChange}
+                onInvalid={handleInvalid}
+                onInput={clearValidation}
                 required
                 rows={5}
                 className="w-full border border-gray-300 px-3.5 py-3 text-sm text-gray-700 outline-none focus:border-emerald-700 focus:ring-2 focus:ring-emerald-700/20"

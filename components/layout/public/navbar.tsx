@@ -27,10 +27,12 @@ const navigation = [
 
 function LanguageSelect({ className = "" }: { className?: string }) {
   const { currentLang, setCurrentLang } = useLanguage()
+  const languageLabel = translate(currentLang, "common.language")
   return (
     <label className={className}>
-      <span className="sr-only">Language</span>
+      <span className="sr-only">{languageLabel}</span>
       <select
+        aria-label={languageLabel}
         value={currentLang}
         onChange={(event) => setCurrentLang(event.target.value as "en" | "sw" | "zh")}
         className="cursor-pointer border border-gray-200 bg-white px-2 py-2 text-sm font-medium text-gray-800 outline-none focus:border-emerald-700"
@@ -95,7 +97,7 @@ export default function Navbar() {
             type="button"
             onClick={() => setMobileMenuOpen((open) => !open)}
             className="flex size-10 items-center justify-center text-gray-700 hover:bg-emerald-50 hover:text-emerald-800"
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={translate(currentLang, mobileMenuOpen ? "common.closeMenu" : "common.openMenu")}
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
