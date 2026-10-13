@@ -1,15 +1,33 @@
 import { useLanguage } from "@/contexts/language-context"
 import { chineseScenarios, englishScenarios, swahiliScenarios } from "@/data/scenario-grid"
+import Image from "next/image"
 import { motion } from "motion/react"
-import { Bike, Building2, CarFront, PlugZap, Truck, Wrench } from "lucide-react"
 
-const scenarioIcons = {
-  vehicles: CarFront,
-  "boda-tuk-tuk": Bike,
-  commercial: Truck,
-  fleet: Building2,
-  charging: PlugZap,
-  "technical-support": Wrench,
+const scenarioImages = {
+  vehicles: {
+    src: "/home-hero.jpg",
+    alt: "Electric car connected to a home charging station",
+  },
+  "boda-tuk-tuk": {
+    src: "/cn_fbg.png",
+    alt: "Electric vehicle charging connectors",
+  },
+  commercial: {
+    src: "/scenario-gird/icj5.jpg",
+    alt: "Electric commercial vans at a charging station",
+  },
+  fleet: {
+    src: "/scenario-gird/icj4.jpg",
+    alt: "A fleet of electric cars at a charging station",
+  },
+  charging: {
+    src: "/scenario-gird/icj2.jpeg",
+    alt: "Electric vehicle charging station",
+  },
+  "technical-support": {
+    src: "/story-3.jpeg",
+    alt: "A team demonstrating electric vehicle charging equipment",
+  },
 }
 
 export default function ScenarioGrid() {
@@ -44,33 +62,39 @@ export default function ScenarioGrid() {
         {/* Cards Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {scenarios.map((scenario, index) => {
-            const Icon = scenarioIcons[scenario.id as keyof typeof scenarioIcons]
+            const image = scenarioImages[scenario.id as keyof typeof scenarioImages]
             return (
-            <motion.div
-              key={scenario.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              className="group flex flex-col overflow-hidden rounded-none border border-gray-100 bg-white shadow-xs transition-all duration-300 hover:shadow-lg"
-              id={`scenario-card-${scenario.id}`}
-            >
-              <div className="flex aspect-video items-center justify-center bg-emerald-50">
-                <Icon className="size-16 text-emerald-700" strokeWidth={1.4} aria-hidden="true" />
-              </div>
-
-              {/* Card Text Content */}
-              <div className="flex flex-1 flex-col justify-between bg-slate-50/50 p-6 text-center">
-                <div>
-                  <h3 className="font-display mb-3 text-[20px] font-bold text-gray-900 transition-colors group-hover:text-electric">
-                    {scenario.title}
-                  </h3>
-                  <p className="text-[14px] leading-relaxed font-normal text-gray-600">
-                    {scenario.description}
-                  </p>
+              <motion.div
+                key={scenario.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                className="group flex flex-col overflow-hidden rounded-none border border-gray-100 bg-white shadow-xs transition-all duration-300 hover:shadow-lg"
+                id={`scenario-card-${scenario.id}`}
+              >
+                <div className="relative aspect-video overflow-hidden bg-emerald-50">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-              </div>
-            </motion.div>
+
+                {/* Card Text Content */}
+                <div className="flex flex-1 flex-col justify-between bg-slate-50/50 p-6 text-center">
+                  <div>
+                    <h3 className="font-display mb-3 text-[20px] font-bold text-gray-900 transition-colors group-hover:text-electric">
+                      {scenario.title}
+                    </h3>
+                    <p className="text-[14px] leading-relaxed font-normal text-gray-600">
+                      {scenario.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             )
           })}
         </div>

@@ -21,7 +21,7 @@ export default function Footer() {
     <footer className="bg-emerald-950 text-white" id="global-footer">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 sm:px-6 md:grid-cols-2 lg:px-8">
         <div>
-          <Brand inverse />
+          <Brand  />
           <p className="mt-5 max-w-md text-sm font-semibold text-emerald-100">
             {t("footer.tagline")}
           </p>

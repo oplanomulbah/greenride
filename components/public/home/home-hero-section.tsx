@@ -436,7 +436,7 @@ export default function HomeHeroSection() {
       id="home-hero-carousel"
       aria-roledescription="carousel"
       aria-label="Professional Electric Vehicles Showcase"
-      className="relative flex min-h-[640px] h-[85vh] max-h-[920px] w-full items-end justify-center overflow-hidden bg-slate-950 text-white select-none sm:h-[86vh] md:h-[88vh]"
+      className="relative flex min-h-[640px] h-[85vh] max-h-[920px] w-full items-end justify-center overflow-hidden bg-slate-950 text-white select-none sm:h-[86vh] md:h-[78vh]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={handleTouchStart}
@@ -501,9 +501,9 @@ export default function HomeHeroSection() {
               </h1>
 
               {/* Subtitle / Tagline */}
-              <p className="text-sm font-semibold tracking-wide text-emerald-300 sm:text-base md:text-lg">
+              {/* <p className="text-sm font-semibold tracking-wide text-emerald-300 sm:text-base md:text-lg">
                 {activeSlide.tagline[lang] || activeSlide.tagline.en}
-              </p>
+              </p> */}
 
               {/* Description */}
               <p className="max-w-2xl text-xs sm:text-sm md:text-base font-normal leading-relaxed text-gray-200 line-clamp-3 sm:line-clamp-none">
@@ -511,7 +511,7 @@ export default function HomeHeroSection() {
               </p>
 
               {/* Key Vehicle Specifications Grid */}
-              <div className="grid grid-cols-2 gap-2 pt-2 sm:grid-cols-4 sm:gap-3">
+              {/* <div className="grid grid-cols-2 gap-2 pt-2 sm:grid-cols-4 sm:gap-3">
                 {activeSlide.specs.map((spec, i) => {
                   const Icon = spec.icon
                   return (
@@ -533,7 +533,7 @@ export default function HomeHeroSection() {
                     </div>
                   )
                 })}
-              </div>
+              </div> */}
 
               {/* Call-to-Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-2">

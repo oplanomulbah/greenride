@@ -4,6 +4,7 @@ import Image from "next/image"
 import { BatteryCharging, CarFront, ClipboardCheck, Truck, Wrench } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { translate } from "@/lib/translations"
+import ImpactMetrics from "../home/impact-metrics"
 
 const serviceKeys = [
   "service.vehicles",
@@ -95,7 +96,8 @@ export default function AboutClient() {
           </ul>
         </div>
       </section>
-
+      <ImpactMetrics />
+      
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="mb-10 max-w-3xl">
           <h2 className="mb-4 text-3xl font-semibold text-gray-950">

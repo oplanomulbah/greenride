@@ -9,7 +9,7 @@ export default function Brand({ inverse = false }: { inverse?: boolean }) {
       className={`group relative inline-flex h-9 w-40 overflow-hidden bg-white md:h-10 md:w-44 ${inverse ? "shadow-sm" : ""}`}
     >
       <Image
-        src="/logo.jpeg"
+        src="/logo-removebg.png"
         alt="GreenRide logo"
         fill
         sizes="176px"
