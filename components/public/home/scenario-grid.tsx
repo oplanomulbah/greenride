@@ -1,19 +1,26 @@
 import { useLanguage } from "@/contexts/language-context"
-import { chineseScenarios, englishScenarios } from "@/data/scenario-grid"
+import { chineseScenarios, englishScenarios, swahiliScenarios } from "@/data/scenario-grid"
 import { motion } from "motion/react"
 
 export default function ScenarioGrid() {
   const { currentLang } = useLanguage()
 
-  const scenarios = currentLang === "en" ? englishScenarios : chineseScenarios
+  const scenarios =
+    currentLang === "en"
+      ? englishScenarios
+      : currentLang === "sw"
+        ? swahiliScenarios
+        : chineseScenarios
 
   const sectionTitle =
     currentLang === "en"
-      ? "Full application scenario coverage"
-      : "全场景应用覆盖"
+      ? "Solutions for every electric journey"
+      : currentLang === "sw"
+        ? "Suluhisho kwa kila safari ya umeme"
+        : "覆盖电动出行全程的解决方案"
 
   return (
-    <section className="relative bg-gradient-to-b from-[#e3f2fd]/40 to-white py-20">
+    <section className="relative bg-gradient-to-b from-emerald-50/70 to-white py-20">
       {/* Decorative clean outline */}
       <div className="bg-grid-slate-100 pointer-events-none absolute inset-0 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]"></div>
 
@@ -23,7 +30,7 @@ export default function ScenarioGrid() {
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             {sectionTitle}
           </h2>
-          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-[#0059E3]"></div>
+          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-electric"></div>
         </div>
 
         {/* Cards Grid */}
@@ -52,7 +59,7 @@ export default function ScenarioGrid() {
               {/* Card Text Content */}
               <div className="flex flex-1 flex-col justify-between bg-slate-50/50 p-6 text-center">
                 <div>
-                  <h3 className="font-display mb-3 text-[20px] font-bold text-gray-900 transition-colors group-hover:text-[#0059E3]">
+                  <h3 className="font-display mb-3 text-[20px] font-bold text-gray-900 transition-colors group-hover:text-electric">
                     {scenario.title}
                   </h3>
                   <p className="text-[14px] leading-relaxed font-normal text-gray-600">

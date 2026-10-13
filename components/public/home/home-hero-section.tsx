@@ -1,11 +1,11 @@
 import { useLanguage } from "@/contexts/language-context"
 import React from "react"
 import { motion } from "motion/react"
+import { translate } from "@/lib/translations"
 
 export default function HomeHeroSection() {
   const { currentLang } = useLanguage()
-  const heroTitle =
-    currentLang === "en" ? "Smart Charging, Green Future" : "智能充电，绿色未来"
+  const heroTitle = translate(currentLang, "home.hero")
   return (
     <div
       className="relative flex h-[60vh] w-full items-end justify-center overflow-hidden sm:h-[75vh] md:h-[80vh]"
@@ -14,7 +14,7 @@ export default function HomeHeroSection() {
       {/* Hero Image */}
       <img
         src="/home-hero.jpg"
-        alt="Donar EV Smart Charging"
+        alt="Electric vehicle charging infrastructure"
         referrerPolicy="no-referrer"
         className="absolute inset-0 h-full w-full object-cover"
       />
@@ -38,7 +38,7 @@ export default function HomeHeroSection() {
           initial={{ width: 0 }}
           animate={{ width: 80 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mx-auto mt-6 h-1.5 rounded-full bg-[#0059E3] shadow-lg"
+          className="mx-auto mt-6 h-1.5 rounded-full bg-electric shadow-lg"
         ></motion.div>
       </div>
     </div>

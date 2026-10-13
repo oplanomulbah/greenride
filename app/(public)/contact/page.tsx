@@ -1,26 +1,23 @@
 import type { Metadata } from "next"
-import DonarContactClient from "@/components/public/contact/contact-clinet"
+import ContactClient from "@/components/public/contact/contact-clinet"
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with Donar EV. Contact us for inquiries about EV charging solutions, energy storage systems, partnership opportunities, or any questions about our products and services.",
+    "Contact GreenRide in Nairobi about electric vehicles, fleet solutions, charging infrastructure and technical consultancy.",
   keywords: [
-    "Donar contact",
-    "EV charging solutions",
-    "contact form",
-    "customer support",
-    "partnership",
-    "energy storage",
+    "GreenRide contact",
+    "electric mobility Kenya",
+    "EV charging",
+    "fleet leasing",
   ],
   openGraph: {
-    title: "Contact Us | Donar EV",
-    description:
-      "Get in touch with Donar EV. Contact us for inquiries about EV charging solutions, energy storage systems, partnership opportunities, or any questions about our products and services.",
+    title: "Contact GreenRide",
+    description: "Contact GreenRide in Nairobi about electric mobility solutions.",
     url: "/contact",
   },
 }
 
-export default function DonarContact() {
-  return <DonarContactClient />
+export default function ContactPage() {
+  return <ContactClient />
 }

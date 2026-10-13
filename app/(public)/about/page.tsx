@@ -1,27 +1,24 @@
-import DonarAboutClient from "@/components/public/about/about-client"
+import AboutClient from "@/components/public/about/about-client"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Donar - a professional EV charging ecology solution provider integrating R&D, production, sales, and service. Discover our innovative green energy solutions and global impact.",
+    "Learn about Greenride Africa Tech Limited, its mission, vision, values and electric mobility services across Kenya.",
   keywords: [
-    "Donar",
+    "GreenRide",
+    "electric mobility Kenya",
+    "electric vehicles",
     "EV charging",
-    "green energy",
-    "sustainable energy",
-    "charging stations",
-    "solar storage",
-    "about Donar",
+    "fleet solutions",
   ],
   openGraph: {
-    title: "About Us | Donar Africa",
-    description:
-      "Learn about Donar - a professional EV charging ecology solution provider integrating R&D, production, sales, and service. Discover our innovative green energy solutions and global impact.",
+    title: "About GreenRide",
+    description: "Learn about GreenRide's mission, vision and electric mobility services.",
     url: "/about",
   },
 }
 
-export default function DonarAboutPage() {
-  return <DonarAboutClient />
+export default function AboutPage() {
+  return <AboutClient />
 }

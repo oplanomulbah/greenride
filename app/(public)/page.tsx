@@ -4,20 +4,18 @@ import HomeClient from "@/components/public/home/home-client"
 export const metadata: Metadata = {
   title: "Home",
   description:
-    "Welcome to Donar EV. Discover our innovative solutions for community empowerment, sustainable development, and collaborative partnerships across the African continent.",
+    "Explore GreenRide's electric vehicles, fleet solutions, charging infrastructure and technical support in Kenya.",
   keywords: [
-    "Donar EV",
-    "Africa development",
-    "community empowerment",
-    "home",
-    "sustainable development",
-    "electric",
-    "electricity",
+    "GreenRide",
+    "electric mobility Kenya",
+    "EV sales",
+    "charging stations",
+    "fleet solutions",
   ],
   openGraph: {
-    title: "Home | Donar EV",
+    title: "Electric mobility in Kenya | GreenRide",
     description:
-      "Welcome to Donar EV. Discover our innovative solutions for community empowerment, sustainable development, and collaborative partnerships across the African continent.",
+      "Explore GreenRide's electric vehicles, fleet solutions, charging infrastructure and technical support in Kenya.",
     url: "/",
   },
 }

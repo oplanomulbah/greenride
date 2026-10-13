@@ -16,18 +16,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    // 1. Check localStorage first
     const savedLang = localStorage.getItem("app-language") as Language | null
-    if (savedLang && (savedLang === "en" || savedLang === "zh")) {
+    if (savedLang && ["en", "sw", "zh"].includes(savedLang)) {
       setCurrentLangState(savedLang)
       document.documentElement.lang = savedLang
     } else {
-      // 2. Fall back to browser's default language
-      const browserLang = navigator.language
-      const defaultLang = browserLang.startsWith("zh") ? "zh" : "en"
-      setCurrentLangState(defaultLang)
-      document.documentElement.lang = defaultLang
-      localStorage.setItem("app-language", defaultLang)
+      localStorage.setItem("app-language", "en")
+      document.documentElement.lang = "en"
     }
     setIsLoaded(true)
   }, [])
@@ -40,11 +35,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <LanguageContext.Provider value={{ currentLang, setCurrentLang, isLoaded }}>
-      {/* 
-        We render children even if not loaded, relying on Next.js suppressHydrationWarning 
-        which you already have on the <html> tag. The text might flash if the browser 
-        language differs from the default SSR language ("en"), but it's better than blocking rendering.
-      */}
       {children}
     </LanguageContext.Provider>
   )

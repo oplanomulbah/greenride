@@ -9,6 +9,7 @@ import {
   Zap,
 } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
+import { translate } from "@/lib/translations"
 
 export default function VideoPlayer() {
   const { currentLang } = useLanguage()
@@ -70,15 +71,12 @@ export default function VideoPlayer() {
     setIsFullscreen(!isFullscreen)
   }
 
-  const textSlogan =
-    currentLang === "en"
-      ? "Green Energy Integrated Solutions Provider"
-      : "绿色能源综合解决方案提供商"
+  const textSlogan = translate(currentLang, "home.videoTitle")
 
   return (
-    <section className="relative overflow-hidden bg-[#eef6fc] py-16">
+    <section className="relative overflow-hidden bg-emerald-50 py-16">
       {/* Dynamic Background Grid Pattern */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#0059E3_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-10"></div>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--color-electric)_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-10"></div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-4">
         {/* Animated Brand Player Frame */}
@@ -92,44 +90,42 @@ export default function VideoPlayer() {
           id="brand-video-frame"
         >
           {/* Main Video View Screen */}
-          <div className="relative flex h-full w-full flex-1 flex-col items-center justify-center bg-radial from-white to-blue-50/50 text-center select-none">
+          <div className="relative flex h-full w-full flex-1 flex-col items-center justify-center bg-radial from-white to-emerald-50/70 text-center select-none">
             {/* Glowing D Animation Logo */}
             <div className="relative mb-6">
               {/* Outer Pulsing Aura */}
               <div
-                className={`absolute inset-0 rounded-full bg-[#0059E3]/15 blur-2xl transition-all duration-1000 ${isPlaying ? "scale-125 opacity-100" : "scale-90 opacity-40"}`}
+                className={`absolute inset-0 rounded-full bg-electric/15 blur-2xl transition-all duration-1000 ${isPlaying ? "scale-125 opacity-100" : "scale-90 opacity-40"}`}
               ></div>
 
               {/* Main Elegant Large D Letter Structure */}
-              <div className="relative z-10 flex h-32 w-32 items-center justify-center rounded-full border-[3px] border-[#0059E3] bg-white shadow-lg">
-                <span className="font-display relative -left-0.5 text-7xl font-black text-[#0059E3] select-none">
-                  D
+              <div className="relative z-10 flex h-32 w-32 items-center justify-center rounded-full border-[3px] border-electric bg-white shadow-lg">
+                <span className="font-display relative -left-0.5 text-7xl font-black text-electric select-none">
+                  G
                 </span>
 
                 {/* Electric plug inside a clean badge attached to the side or center */}
-                <div className="absolute top-10 -right-2 flex items-center justify-center rounded-sm border-2 border-[#0059E3] bg-white px-1 py-1 text-[#0059E3] shadow-xs">
-                  <Zap className="h-5 w-5 fill-[#0059E3]" />
+                <div className="absolute top-10 -right-2 flex items-center justify-center rounded-sm border-2 border-electric bg-white px-1 py-1 text-electric shadow-xs">
+                  <Zap className="h-5 w-5 fill-electric" />
                 </div>
               </div>
 
               {/* Radial sound waves on play */}
               {isPlaying && (
                 <>
-                  <div className="absolute -inset-4 animate-ping rounded-full border-2 border-sky-400/20"></div>
-                  <div className="absolute -inset-8 animate-pulse rounded-full border border-blue-400/10"></div>
+                  <div className="absolute -inset-4 animate-ping rounded-full border-2 border-emerald-400/20"></div>
+                  <div className="absolute -inset-8 animate-pulse rounded-full border border-emerald-400/10"></div>
                 </>
               )}
             </div>
 
             {/* Video Subtitle & Slogan */}
-            <h4 className="font-display relative z-10 mb-2 max-w-lg text-xl font-bold tracking-tight text-[#0059E3] transition-colors sm:text-2xl">
+            <h4 className="font-display relative z-10 mb-2 max-w-lg text-xl font-bold tracking-tight text-electric transition-colors sm:text-2xl">
               {textSlogan}
             </h4>
 
             <p className="relative z-10 font-mono text-xs tracking-widest text-slate-400 uppercase">
-              {currentLang === "en"
-                ? "Corporate Presentation"
-                : "企业形象宣传片"}{" "}
+              {translate(currentLang, "home.videoLabel")}{" "}
               • {formatTime(currentTimeSec)}
             </p>
 
@@ -137,7 +133,7 @@ export default function VideoPlayer() {
             {!isPlaying && (
               <button
                 onClick={handlePlayPause}
-                className="absolute inset-0 m-auto flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-blue-600/90 text-xl text-white shadow-lg transition-all hover:scale-105 hover:bg-[#0059E3]"
+                className="absolute inset-0 m-auto flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-emerald-700/90 text-xl text-white shadow-lg transition-all hover:scale-105 hover:bg-emerald-800"
                 aria-label="Play Video"
               >
                 <Play className="h-8 w-8 translate-x-0.5 fill-white" />
@@ -156,7 +152,7 @@ export default function VideoPlayer() {
                 step="0.1"
                 value={progress}
                 onChange={handleScrubberChange}
-                className="h-1 w-full cursor-pointer appearance-none rounded-lg bg-gray-700 accent-sky-400 focus:outline-hidden"
+                className="h-1 w-full cursor-pointer appearance-none rounded-lg bg-gray-700 accent-emerald-400 focus:outline-hidden"
                 id="video-scrubber"
               />
             </div>
@@ -167,7 +163,7 @@ export default function VideoPlayer() {
                 {/* Play/Pause */}
                 <button
                   onClick={handlePlayPause}
-                  className="cursor-pointer p-1 transition-colors hover:text-[#00d2ff]"
+                  className="cursor-pointer p-1 transition-colors hover:text-emerald-300"
                   id="ctrl-play-pause"
                 >
                   {isPlaying ? (
@@ -191,7 +187,7 @@ export default function VideoPlayer() {
                 {/* Volume Button */}
                 <button
                   onClick={() => setIsMuted(!isMuted)}
-                  className="cursor-pointer p-1 transition-colors hover:text-sky-300"
+                  className="cursor-pointer p-1 transition-colors hover:text-emerald-300"
                   id="ctrl-volume"
                 >
                   {isMuted ? (
@@ -204,7 +200,7 @@ export default function VideoPlayer() {
                 {/* Fullscreen Button */}
                 <button
                   onClick={handleToggleFullscreen}
-                  className="cursor-pointer p-1 transition-colors hover:text-sky-300"
+                  className="cursor-pointer p-1 transition-colors hover:text-emerald-300"
                   id="ctrl-fullscreen"
                 >
                   {isFullscreen ? (

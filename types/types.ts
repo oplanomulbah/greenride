@@ -14,7 +14,7 @@ export interface ScenarioItem {
   imageUrl: string
 }
 
-export type Language = "en" | "zh"
+export type Language = "en" | "sw" | "zh"
 
 export interface ProductFeature {
   icon?: string // Lucide icon name or image path
@@ -33,14 +33,9 @@ export interface ProductParameter {
 export interface Product {
   id: number
   slug: string
-  category: "AC Charging" | "DC Charging" | "ESS" | "Platform"
-  name: string
-  subtitle: string
-  description?: string
+  category: "vehicles" | "fleet" | "charging" | "infrastructure" | "consultancy"
+  nameKey: string
+  summaryKey: string
   imageUrl: string[]
-  maxPower: string
-  bulletPoints: string[] // e.g. "Very easy to use..."
-  detailedFeatures?: ProductFeature[]
-  parametersImage?: string
 }
 

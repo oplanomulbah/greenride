@@ -20,55 +20,43 @@ const fontMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Donar EV - Empowering Communities Through Innovation",
-    template: "%s | Donar EV",
+    default: "GreenRide | Electric Mobility in Kenya",
+    template: "%s | GreenRide",
   },
   description:
-    "Donar EV is dedicated to empowering communities across EV through innovative solutions, sustainable development, and collaborative partnerships.",
+    "GreenRide makes electric mobility accessible in Kenya with EV sales, fleet solutions, charging infrastructure and technical support.",
   keywords: [
-    "Donar EV",
-    "Africa development",
-    "community empowerment",
-    "sustainable development",
-    "innovation",
-    "social impact",
-    "electric",
-    "electric vehicle",
-    "electricity",
+    "GreenRide",
+    "electric vehicles Kenya",
+    "electric mobility",
+    "EV charging Kenya",
+    "fleet leasing",
+    "charging infrastructure",
   ],
-  icons: {
-    icon: "/scenario-gird/logo.png",
-  },
-  authors: [{ name: "Donar EV" }],
-  creator: "Donar EV",
-  publisher: "Donar EV",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://donarafrica.com"
-  ),
+  authors: [{ name: "Greenride Africa Tech Limited" }],
+  creator: "Greenride Africa Tech Limited",
+  publisher: "Greenride Africa Tech Limited",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_KE",
     url: "/",
-    siteName: "Donar EV",
-    title: "Donar EV - Empowering Communities Through Innovation",
+    siteName: "GreenRide",
+    title: "GreenRide | Electric Mobility in Kenya",
     description:
-      "Donar EV is dedicated to empowering communities across EV through innovative solutions, sustainable development, and collaborative partnerships.",
+      "GreenRide makes electric mobility accessible in Kenya with EV sales, fleet solutions, charging infrastructure and technical support.",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Donar EV - Empowering Communities Through Innovation",
+        url: "/home-hero.jpg",
+        alt: "Electric mobility and charging infrastructure",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Donar EV - Empowering Communities Through Innovation",
+    title: "GreenRide | Electric Mobility in Kenya",
     description:
-      "Donar EV is dedicated to empowering communities across EV through innovative solutions, sustainable development, and collaborative partnerships.",
-    images: ["/og-image.jpg"],
-    creator: "@donarev",
+      "GreenRide makes electric mobility accessible in Kenya with EV sales, fleet solutions, charging infrastructure and technical support.",
+    images: ["/home-hero.jpg"],
   },
   robots: {
     index: true,

@@ -1,101 +1,113 @@
 "use client"
 
 import Image from "next/image"
+import { BatteryCharging, CarFront, ClipboardCheck, Truck, Wrench } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
+import { translate } from "@/lib/translations"
 
-const successStories = [
-  {
-    id: 1,
-    img: "/story-1.jpeg",
-    alt: "Donar charging station in Kenya",
-    description:
-      "In addition to conventional DC charging stations, the charging stations built by Donar in Kenya also have distributed solar energy storage charging stations installed, bringing more economically valuable green energy to the local market.",
-  },
-  {
-    id: 2,
-    img: "/story-2.jpeg",
-    alt: "Donar charging station in Vietnam",
-    description:
-      "Donar's charging stations in Vietnam have both DC charging stations and AC charging stations, providing local users with the ultimate charging experience.",
-  },
-  {
-    id: 3,
-    img: "/story-3.jpeg",
-    alt: "Donar charging station in China",
-    description:
-      "Donar's charging stations in China are installed on highways, residential areas, tourist attractions, etc., making it convenient for electric vehicle users to recharge their batteries efficiently at any time.",
-  },
+const serviceKeys = [
+  "service.vehicles",
+  "service.import",
+  "service.fleet",
+  "service.registration",
+  "service.charging",
+  "service.stations",
+  "service.consultancy",
 ]
 
-const SectionIcon = () => (
-  <div className="relative mx-auto mb-3 size-10 overflow-hidden">
-    <Image
-      src="/scenario-gird/logo-small.png"
-      alt="Donar Logo"
-      fill
-      className="object-contain"
-    />
-  </div>
-)
+const serviceIcons = [CarFront, Truck, Truck, ClipboardCheck, BatteryCharging, BatteryCharging, Wrench]
 
-export default function DonarAboutClient() {
+const projectImages = [
+  { src: "/story-1.jpeg", alt: "Electric vehicle charging equipment" },
+  { src: "/story-2.jpeg", alt: "Electric vehicle charging station" },
+  { src: "/story-3.jpeg", alt: "Charging infrastructure for electric vehicles" },
+]
+
+export default function AboutClient() {
+  const { currentLang } = useLanguage()
+  const t = (key: string) => translate(currentLang, key)
+
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-800">
-      {/* ── Company Section ── */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <SectionIcon />
-        <h2 className="mb-10 text-center text-4xl font-light tracking-tight text-gray-900">
-          Company
-        </h2>
+    <div className="bg-white text-gray-800">
+      <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+        <p className="mb-4 text-center text-sm font-semibold tracking-[0.12em] text-emerald-700 uppercase">
+          Greenride Africa Tech Limited
+        </p>
+        <h1 className="mx-auto mb-12 max-w-3xl text-center text-4xl leading-tight font-semibold text-gray-950 md:text-5xl">
+          {t("about.title")}
+        </h1>
 
-        <div className="space-y-5 text-xl leading-7 text-gray-700">
-          <p>
-            Donar is a professional EV charging ecology solution provider that
-            integrates research and development, production, sales, and service.
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-4 text-2xl font-semibold text-gray-950">
+            {t("about.company")}
+          </h2>
+          <p className="text-lg leading-8 text-gray-600">
+            {t("about.companyBody")}
           </p>
-          <p>
-            Donar adheres to the concept of focus on innovation, excellence, and
-            struggle, and based on the advantages of enterprises in green energy
-            technology, provides customers with green solutions such as solar
-            storage integrated EV charging stations, industrial and commercial
-            energy storage, intelligent home storage systems, and portable power
-            supplies. Through the use of advanced cloud computing, big data,
-            artificial intelligence, and the IoT technology, Donar is committed
-            to building a smart and green EV charging industry ecosystem.
+        </div>
+
+        <div className="mx-auto mt-16 grid max-w-5xl gap-10 border-y border-gray-200 py-10 md:grid-cols-2">
+          <div>
+            <h2 className="mb-3 text-xl font-semibold text-emerald-800">
+              {t("about.mission")}
+            </h2>
+            <p className="leading-7 text-gray-600">{t("about.missionBody")}</p>
+          </div>
+          <div>
+            <h2 className="mb-3 text-xl font-semibold text-emerald-800">
+              {t("about.vision")}
+            </h2>
+            <p className="leading-7 text-gray-600">{t("about.visionBody")}</p>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-14 max-w-5xl">
+          <h2 className="mb-4 text-2xl font-semibold text-gray-950">
+            {t("about.values")}
+          </h2>
+          <p className="mb-8 max-w-3xl leading-7 text-gray-600">
+            {t("about.valuesBody")}
           </p>
-          <p>
-            As a global leader in the green energy industry, Donar relies on
-            China to gradually move towards the world, driving the progress of
-            the clean energy industry with the power of technology, and leading
-            the world towards the freedom of sustainable green energy.
-          </p>
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {["sustainability", "reliability", "integrity", "innovation", "customer"].map((value) => (
+              <li key={value} className="border-l-2 border-emerald-600 py-2 pl-4 font-medium text-gray-800">
+                {t(`about.${value}`)}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* ── Divider ── */}
-      <div className="mx-auto max-w-4xl border-t border-gray-100" />
+      <section className="bg-emerald-50/70 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="mb-10 text-3xl font-semibold text-gray-950">
+            {t("about.services")}
+          </h2>
+          <ul className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+            {serviceKeys.map((key, index) => {
+              const Icon = serviceIcons[index]
+              return (
+                <li key={key} className="flex items-start gap-4 border-b border-emerald-900/10 pb-5">
+                  <Icon className="mt-0.5 size-6 shrink-0 text-emerald-700" aria-hidden="true" />
+                  <span className="font-medium leading-6 text-gray-800">{t(key)}</span>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </section>
 
-      <section className="mx-auto max-w-4xl px-6 py-20">
-        <SectionIcon />
-        <h2 className="mb-10 text-center text-4xl font-light tracking-tight text-gray-900">
-          Success Story
-        </h2>
-
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {successStories.map((story) => (
-            <div
-              key={story.id}
-              className="group relative cursor-pointer overflow-hidden"
-            >
-              <div className="relative h-52 w-full overflow-hidden">
-                <Image
-                  src={story.img}
-                  alt={story.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              {/* Subtle blue overlay on hover */}
-              <div className="absolute inset-0 bg-[#1a8cff] opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
+      <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="mb-10 max-w-3xl">
+          <h2 className="mb-4 text-3xl font-semibold text-gray-950">
+            {t("about.impact")}
+          </h2>
+          <p className="leading-7 text-gray-600">{t("about.impactBody")}</p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {projectImages.map((image) => (
+            <div key={image.src} className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+              <Image src={image.src} alt={image.alt} fill className="object-cover transition-transform duration-500 hover:scale-105" />
             </div>
           ))}
         </div>

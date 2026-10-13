@@ -1,35 +1,33 @@
+"use client"
+
 import Link from "next/link"
+import { useLanguage } from "@/contexts/language-context"
+import { translate } from "@/lib/translations"
 
 interface ProductTabsProps {
   activeCategory?: string
 }
 
-const TABS = [
-  { label: "AC Charging", slug: "ac-charging" },
-  { label: "DC Charging", slug: "dc-charging" },
-  { label: "ESS", slug: "ess" },
-  { label: "Platform", slug: "platform" },
-]
+const tabs = ["vehicles", "fleet", "charging", "infrastructure", "consultancy"]
 
-export function ProductTabs({ activeCategory = "ac-charging" }: ProductTabsProps) {
+export function ProductTabs({ activeCategory = "vehicles" }: ProductTabsProps) {
+  const { currentLang } = useLanguage()
   return (
-    <div className="flex justify-center flex-wrap gap-4 md:gap-8 py-6 mb-12 border-b border-gray-100">
-      {TABS.map((tab) => {
-        const isActive = activeCategory === tab.slug
-        return (
-          <Link
-            key={tab.slug}
-            href={`/products?category=${tab.slug}`}
-            className={`px-6 py-2 rounded-full font-medium text-sm transition-all duration-200 cursor-pointer ${
-              isActive
-                ? "bg-[#F3D0B4] text-gray-900 shadow-xs scale-105"
-                : "text-gray-950 hover:bg-gray-100 hover:text-blue-600"
-            }`}
-          >
-            {tab.label}
-          </Link>
-        )
-      })}
-    </div>
+    <nav aria-label="Product and service categories" className="mb-12 flex flex-wrap justify-center gap-3 border-b border-gray-100 py-6 md:gap-5">
+      {tabs.map((category) => (
+        <Link
+          key={category}
+          href={`/products?category=${category}`}
+          aria-current={activeCategory === category ? "page" : undefined}
+          className={`cursor-pointer px-5 py-2.5 text-sm font-medium transition-colors ${
+            activeCategory === category
+              ? "bg-emerald-700 text-white"
+              : "text-gray-700 hover:bg-emerald-50 hover:text-emerald-800"
+          }`}
+        >
+          {translate(currentLang, `catalog.${category}`)}
+        </Link>
+      ))}
+    </nav>
   )
 }
