@@ -45,7 +45,7 @@ const stories: CaseStory[] = [
       sw: "Ufungaji kamili wa kiufundi, ukaguzi wa usalama wa umeme, na makabidhiano ya chaja za haraka za DC kwa ajili ya magari ya biashara.",
       zh: "技术工程团队完成双枪直流快充机整体验收、带电联调测试与运营商运营人员现场交接培训。",
     },
-    image: "/story-1.jpeg",
+    image: "/story-1.jpg",
     icon: BatteryCharging,
     stats: {
       label: { en: "Dual Output Power", sw: "Nguvu ya Chaji", zh: "快充输出功率" },
