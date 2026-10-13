@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import Link from "next/link"
+import { usePathname, useSearchParams } from "next/navigation"
 import Brand from "@/components/common/brand"
 import { useLanguage } from "@/contexts/language-context"
 import { translate } from "@/lib/translations"
@@ -48,8 +49,18 @@ function LanguageSelect({ className = "" }: { className?: string }) {
 export default function Navbar() {
   const { currentLang } = useLanguage()
   const t = (key: string) => translate(currentLang, key)
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const isActive = (href: string) => {
+    const [hrefPath, hrefQuery] = href.split("?")
+    if (pathname !== hrefPath) return false
+
+    return !hrefQuery || Array.from(new URLSearchParams(hrefQuery)).every(
+      ([key, value]) => searchParams.get(key) === value,
+    )
+  }
 
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white shadow-xs">
@@ -68,7 +79,9 @@ export default function Navbar() {
               >
                 <Link
                   href={item.href}
-                  className="inline-flex items-center gap-1 text-sm font-medium text-gray-700 transition-colors hover:text-emerald-700"
+                  className={`inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-emerald-700 ${
+                    isActive(item.href) ? "text-emerald-700" : "text-gray-700"
+                  }`}
                 >
                   {label}
                   {item.children && <ChevronDown className={`size-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />}
@@ -79,7 +92,9 @@ export default function Navbar() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-4 py-2.5 text-sm text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
+                        className={`block px-4 py-2.5 text-sm transition-colors hover:bg-emerald-50 hover:text-emerald-800 ${
+                          isActive(child.href) ? "text-emerald-700" : "text-gray-700"
+                        }`}
                       >
                         {t(child.key)}
                       </Link>
@@ -111,7 +126,9 @@ export default function Navbar() {
               <Link
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-3 text-sm font-semibold text-gray-800 hover:text-emerald-700"
+                className={`block py-3 text-sm font-semibold hover:text-emerald-700 ${
+                  isActive(item.href) ? "text-emerald-700" : "text-gray-800"
+                }`}
               >
                 {t(item.key)}
               </Link>
@@ -120,7 +137,9 @@ export default function Navbar() {
                   key={child.href}
                   href={child.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block py-2 pl-4 text-sm text-gray-600 hover:text-emerald-700"
+                  className={`block py-2 pl-4 text-sm hover:text-emerald-700 ${
+                    isActive(child.href) ? "text-emerald-700" : "text-gray-600"
+                  }`}
                 >
                   {t(child.key)}
                 </Link>

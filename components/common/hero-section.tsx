@@ -9,7 +9,7 @@ const HeroSection = ({
 }) => {
   return (
     <div
-      className="relative flex h-120 flex-col items-center justify-center overflow-hidden px-3 text-center md:h-148"
+      className="relative flex h-120 flex-col items-center justify-center overflow-hidden bg-no-repeat bg-cover px-3 text-center md:h-148"
       style={{ backgroundImage: `url(${image})` }}
     >
       <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/30 to-black/60" />

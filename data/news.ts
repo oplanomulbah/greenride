@@ -17,7 +17,7 @@ export const newsData: NewsArticle[] = [
     id: 1,
     slug: "choosing-an-electric-vehicle",
     category: "vehicles",
-    imageUrl: "/contact_nbanner.jpeg",
+    imageUrl: "/scenario-gird/icj5.jpg",
     title: {
       en: "Choosing an electric vehicle for your needs",
       sw: "Kuchagua gari la umeme linalokufaa",
@@ -59,7 +59,7 @@ export const newsData: NewsArticle[] = [
     id: 3,
     slug: "electric-fleet-transition",
     category: "fleet",
-    imageUrl: "/contact_nbanner.jpeg",
+    imageUrl: "/products/thaifast-1.jpeg",
     title: {
       en: "Planning a fleet transition to electric",
       sw: "Kupanga mpito wa magari ya biashara kwenda umeme",

@@ -24,7 +24,7 @@ export default function ProductsClient({ activeCategory }: ProductsClientProps) 
     <div className="flex min-h-screen w-full flex-col bg-gray-50 pb-20">
       <section className="relative flex h-[42vh] min-h-72 items-end overflow-hidden bg-emerald-950 md:h-[52vh]">
         <Image
-          src="/contact_nbanner.jpeg"
+          src="/products/product-hero.jpg"
           alt="An electric vehicle connected to charging equipment"
           fill
           priority

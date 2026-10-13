@@ -60,7 +60,7 @@ export default function ContactClient() {
     <div className="text-gray-900">
       <HeroSection
         title={t("contact.title")}
-        image="/contact_nbanner.jpeg"
+        image="/scenario-gird/icj1.jpg"
         description={t("contact.description")}
       />
 

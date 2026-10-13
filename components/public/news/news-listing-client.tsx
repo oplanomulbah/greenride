@@ -25,7 +25,7 @@ export default function NewsListingClient({
     <div className="flex min-h-screen w-full flex-col">
       <HeroSection
         title={t("nav.news")}
-        image="/contact_nbanner.jpeg"
+        image="/products/product-hero.jpg"
         description={t("common.insightsIntro")}
       />
       <NewsTabs activeCategory={activeCategory} />
