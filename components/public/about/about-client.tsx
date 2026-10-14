@@ -1,10 +1,16 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { BatteryCharging, CarFront, ClipboardCheck, Truck, Wrench } from "lucide-react"
-import { useLanguage } from "@/contexts/language-context"
-import { translate } from "@/lib/translations"
-import ImpactMetrics from "../home/impact-metrics"
+import Image from "next/image";
+import {
+  BatteryCharging,
+  CarFront,
+  ClipboardCheck,
+  Truck,
+  Wrench,
+} from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
+import { translate } from "@/lib/translations";
+import ImpactMetrics from "../home/impact-metrics";
 
 const serviceKeys = [
   "service.vehicles",
@@ -14,18 +20,37 @@ const serviceKeys = [
   "service.charging",
   "service.stations",
   "service.consultancy",
-]
+];
 
-const serviceIcons = [CarFront, Truck, Truck, ClipboardCheck, BatteryCharging, BatteryCharging, Wrench]
+const serviceIcons = [
+  CarFront,
+  Truck,
+  Truck,
+  ClipboardCheck,
+  BatteryCharging,
+  BatteryCharging,
+  Wrench,
+];
 
 const projectImages = [
-  { src: "/contact_nbanner.jpeg", alt: "An electric vehicle connected to charging equipment" },
-  { src: "/products/pocket-1.jpeg", alt: "Portable electric vehicle charging equipment" },
-]
+  {
+    src: "/kenya-charge-1.jpeg",
+    alt: "An electric vehicle connected to charging equipment",
+  },
+  {
+    src: "/kenya-charge-2.jpeg",
+    alt: "Portable electric vehicle charging equipment",
+  },
+];
+
+const companyCatalogUrl =
+  "/products/pdf/Company%20Profile-%20GREENRIDE%20AFRICA%20TECH%20LIMITED.pdf";
+const companyCatalogFileName =
+  "Company Profile- GREENRIDE AFRICA TECH LIMITED.pdf";
 
 export default function AboutClient() {
-  const { currentLang } = useLanguage()
-  const t = (key: string) => translate(currentLang, key)
+  const { currentLang } = useLanguage();
+  const t = (key: string) => translate(currentLang, key);
 
   return (
     <div className="bg-white text-gray-800">
@@ -69,12 +94,52 @@ export default function AboutClient() {
             {t("about.valuesBody")}
           </p>
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {["sustainability", "reliability", "integrity", "innovation", "customer"].map((value) => (
-              <li key={value} className="border-l-2 border-emerald-600 py-2 pl-4 font-medium text-gray-800">
+            {[
+              "sustainability",
+              "reliability",
+              "integrity",
+              "innovation",
+              "customer",
+            ].map((value) => (
+              <li
+                key={value}
+                className="border-l-2 border-emerald-600 py-2 pl-4 font-medium text-gray-800"
+              >
                 {t(`about.${value}`)}
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2
+              id="company-catalog-heading"
+              className="mb-2 text-3xl font-semibold text-gray-950"
+            >
+              Company Profile
+            </h2>
+            <p className="leading-7 text-gray-600">
+              View the Greenride Africa Tech Limited company profile below.
+            </p>
+          </div>
+          <a
+            href={companyCatalogUrl}
+            download={companyCatalogFileName}
+            className="inline-flex min-h-11 items-center justify-center rounded-md bg-emerald-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
+          >
+            Download PDF
+          </a>
+        </div>
+        <div className="h-[65vh] min-h-96 overflow-hidden rounded-lg border border-gray-200 bg-gray-100 shadow-sm sm:h-[75vh]">
+          <iframe
+            src={companyCatalogUrl}
+            title="Greenride Africa Tech Limited company profile PDF"
+            aria-labelledby="company-catalog-heading"
+            className="size-full"
+          />
         </div>
       </section>
 
@@ -85,19 +150,27 @@ export default function AboutClient() {
           </h2>
           <ul className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
             {serviceKeys.map((key, index) => {
-              const Icon = serviceIcons[index]
+              const Icon = serviceIcons[index];
               return (
-                <li key={key} className="flex items-start gap-4 border-b border-emerald-900/10 pb-5">
-                  <Icon className="mt-0.5 size-6 shrink-0 text-emerald-700" aria-hidden="true" />
-                  <span className="font-medium leading-6 text-gray-800">{t(key)}</span>
+                <li
+                  key={key}
+                  className="flex items-start gap-4 border-b border-emerald-900/10 pb-5"
+                >
+                  <Icon
+                    className="mt-0.5 size-6 shrink-0 text-emerald-700"
+                    aria-hidden="true"
+                  />
+                  <span className="font-medium leading-6 text-gray-800">
+                    {t(key)}
+                  </span>
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
       </section>
       <ImpactMetrics />
-      
+
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="mb-10 max-w-3xl">
           <h2 className="mb-4 text-3xl font-semibold text-gray-950">
@@ -107,12 +180,20 @@ export default function AboutClient() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {projectImages.map((image) => (
-            <div key={image.src} className="relative aspect-4/3 overflow-hidden bg-gray-100">
-              <Image src={image.src} alt={image.alt} fill className="object-cover transition-transform duration-500 hover:scale-105" />
+            <div
+              key={image.src}
+              className="relative aspect-4/3 overflow-hidden bg-gray-100"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+              />
             </div>
           ))}
         </div>
       </section>
     </div>
-  )
+  );
 }
