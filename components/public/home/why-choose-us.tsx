@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import React from "react"
-import { motion } from "motion/react"
-import Link from "next/link"
-import { useLanguage } from "@/contexts/language-context"
-import type { Language } from "@/types/types"
+import React from "react";
+import { motion } from "motion/react";
+import Link from "next/link";
+import { useLanguage } from "@/contexts/language-context";
+import type { Language } from "@/types/types";
 import {
   CarFront,
   ShieldCheck,
@@ -14,13 +14,13 @@ import {
   LineChart,
   ArrowRight,
   CheckCircle,
-} from "lucide-react"
+} from "lucide-react";
 
 interface PillarItem {
-  icon: React.ComponentType<{ className?: string }>
-  title: Record<Language, string>
-  description: Record<Language, string>
-  benefit: Record<Language, string>
+  icon: React.ComponentType<{ className?: string }>;
+  title: Record<Language, string>;
+  description: Record<Language, string>;
+  benefit: Record<Language, string>;
 }
 
 const pillars: PillarItem[] = [
@@ -132,14 +132,17 @@ const pillars: PillarItem[] = [
       zh: "数据驱动的高效决策支持",
     },
   },
-]
+];
 
 export default function WhyChooseGreenRide() {
-  const { currentLang } = useLanguage()
-  const lang: Language = currentLang || "en"
+  const { currentLang } = useLanguage();
+  const lang: Language = currentLang || "en";
 
   return (
-    <section className="bg-slate-50 py-20 text-gray-900 sm:py-24" id="why-greenride-section">
+    <section
+      className="bg-slate-50 py-20 text-gray-900 sm:py-24"
+      id="why-greenride-section"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center">
@@ -175,7 +178,7 @@ export default function WhyChooseGreenRide() {
         {/* 6 Pillars Grid */}
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {pillars.map((item, index) => {
-            const Icon = item.icon
+            const Icon = item.icon;
             return (
               <motion.div
                 key={index}
@@ -204,7 +207,7 @@ export default function WhyChooseGreenRide() {
                   <span>{item.benefit[lang] || item.benefit.en}</span>
                 </div>
               </motion.div>
-            )
+            );
           })}
         </div>
 
@@ -226,6 +229,5 @@ export default function WhyChooseGreenRide() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

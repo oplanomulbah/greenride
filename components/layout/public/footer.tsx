@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Brand from "@/components/common/brand"
-import { useLanguage } from "@/contexts/language-context"
-import { translate } from "@/lib/translations"
+import Link from "next/link";
+import Brand from "@/components/common/brand";
+import { useLanguage } from "@/contexts/language-context";
+import { translate } from "@/lib/translations";
+import Image from "next/image";
 
 const footerLinks = [
   { key: "nav.home", href: "/" },
@@ -11,17 +12,17 @@ const footerLinks = [
   { key: "nav.about", href: "/about" },
   { key: "nav.news", href: "/news" },
   { key: "nav.contact", href: "/contact" },
-]
+];
 
 export default function Footer() {
-  const { currentLang } = useLanguage()
-  const t = (key: string) => translate(currentLang, key)
+  const { currentLang } = useLanguage();
+  const t = (key: string) => translate(currentLang, key);
 
   return (
     <footer className="bg-emerald-950 text-white" id="global-footer">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 sm:px-6 md:grid-cols-2 lg:px-8">
         <div>
-          <Brand  />
+          <Brand inverse />
           <p className="mt-5 max-w-md text-sm font-semibold text-emerald-100">
             {t("footer.tagline")}
           </p>
@@ -35,7 +36,10 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-emerald-50/80">
               {footerLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="transition-colors hover:text-white">
+                  <Link
+                    href={link.href}
+                    className="transition-colors hover:text-white"
+                  >
                     {t(link.key)}
                   </Link>
                 </li>
@@ -43,14 +47,18 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h2 className="mb-4 text-sm font-semibold text-white">{t("nav.contact")}</h2>
+            <h2 className="mb-4 text-sm font-semibold text-white">
+              {t("nav.contact")}
+            </h2>
             <a
               className="text-sm text-emerald-50/80 transition-colors hover:text-white"
               href="mailto:greenride@kencharge.com"
             >
               greenride@kencharge.com
             </a>
-            <p className="mt-3 text-sm text-emerald-50/80">{t("common.location")}</p>
+            <p className="mt-3 text-sm text-emerald-50/80">
+              {t("common.location")}
+            </p>
           </div>
         </div>
       </div>
@@ -58,5 +66,5 @@ export default function Footer() {
         © {new Date().getFullYear()} Greenride Africa Tech Limited
       </div>
     </footer>
-  )
+  );
 }
