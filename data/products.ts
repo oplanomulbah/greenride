@@ -1,7 +1,7 @@
-import type { Product } from "@/types/types"
+import type { Product } from "@/types/types";
 
-const carImage = "/contact_nbanner.jpeg"
-const chargerImage = "/products/pocket-1.jpeg"
+const carImage = "/contact_nbanner.jpeg";
+const chargerImage = "/products/pocket-1.jpeg";
 
 export const productsData: Product[] = [
   {
@@ -10,7 +10,7 @@ export const productsData: Product[] = [
     category: "vehicles",
     nameKey: "service.vehicles",
     summaryKey: "product.vehicles.summary",
-    imageUrl: [carImage],
+    imageUrl: ["/kenya-charge-1.jpeg"],
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ export const productsData: Product[] = [
     category: "vehicles",
     nameKey: "service.import",
     summaryKey: "product.import.summary",
-    imageUrl: [carImage],
+    imageUrl: ["/kenya-charge-2.jpeg"],
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ export const productsData: Product[] = [
     category: "fleet",
     nameKey: "service.fleet",
     summaryKey: "product.fleet.summary",
-    imageUrl: [carImage],
+    imageUrl: ["/car-charging.jpeg"],
   },
   {
     id: 4,
@@ -34,7 +34,7 @@ export const productsData: Product[] = [
     category: "vehicles",
     nameKey: "service.registration",
     summaryKey: "product.registration.summary",
-    imageUrl: [carImage],
+    imageUrl: ["/scenario-gird/icj1.jpg"],
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const productsData: Product[] = [
     category: "charging",
     nameKey: "service.charging",
     summaryKey: "product.charging.summary",
-    imageUrl: [chargerImage],
+    imageUrl: ["/scenario-gird/icj6.jpeg"],
   },
   {
     id: 6,
@@ -50,7 +50,7 @@ export const productsData: Product[] = [
     category: "infrastructure",
     nameKey: "service.stations",
     summaryKey: "product.stations.summary",
-    imageUrl: [chargerImage],
+    imageUrl: ["/scenario-gird/icj4.jpg"],
   },
   {
     id: 7,
@@ -58,6 +58,6 @@ export const productsData: Product[] = [
     category: "consultancy",
     nameKey: "service.consultancy",
     summaryKey: "product.consultancy.summary",
-    imageUrl: [carImage],
+    imageUrl: ["/cn_fbg.png"],
   },
-]
+];
