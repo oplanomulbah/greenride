@@ -1,45 +1,45 @@
-"use client"
+"use client";
 
-import HeroSection from "@/components/common/hero-section"
-import { Mail, MapPin } from "lucide-react"
-import { useState, type FormEvent } from "react"
-import { useLanguage } from "@/contexts/language-context"
-import { translate } from "@/lib/translations"
+import HeroSection from "@/components/common/hero-section";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { useState, type FormEvent } from "react";
+import { useLanguage } from "@/contexts/language-context";
+import { translate } from "@/lib/translations";
 
 export default function ContactClient() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" })
-  const [submitted, setSubmitted] = useState(false)
-  const { currentLang } = useLanguage()
-  const t = (key: string) => translate(currentLang, key)
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const { currentLang } = useLanguage();
+  const t = (key: string) => translate(currentLang, key);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => setForm({ ...form, [e.target.name]: e.target.value })
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const subject = encodeURIComponent(`GreenRide enquiry from ${form.name}`)
+    event.preventDefault();
+    const subject = encodeURIComponent(`GreenRide enquiry from ${form.name}`);
     const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    )
-    window.location.href = `mailto:greenride@kencharge.com?subject=${subject}&body=${body}`
-    setSubmitted(true)
-  }
+      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
+    );
+    window.location.href = `mailto:greenride@kencharge.com?subject=${subject}&body=${body}`;
+    setSubmitted(true);
+  };
 
   const handleInvalid = (
-    event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: FormEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const field = event.currentTarget
+    const field = event.currentTarget;
     field.setCustomValidity(
       field.validity.typeMismatch
         ? t("contact.invalidEmail")
-        : t("contact.required")
-    )
-  }
+        : t("contact.required"),
+    );
+  };
 
   const clearValidation = (
-    event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => event.currentTarget.setCustomValidity("")
+    event: FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => event.currentTarget.setCustomValidity("");
 
   const contactCards = [
     {
@@ -54,7 +54,13 @@ export default function ContactClient() {
       detail: t("common.location"),
       href: "https://maps.google.com/?q=Kileleshwa%2C+Nairobi%2C+Kenya",
     },
-  ]
+    {
+      icon: <Phone className="size-6 text-white" />,
+      label: t("contact.phone"),
+      detail: "+254 0142015466",
+      href: "tel:+254700000000",
+    },
+  ];
 
   return (
     <div className="text-gray-900">
@@ -66,8 +72,10 @@ export default function ContactClient() {
 
       <div className="bg-white py-16">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="mb-8 text-2xl font-bold md:text-3xl">{t("nav.contact")}</h2>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <h2 className="mb-8 text-2xl font-bold md:text-3xl">
+            {t("nav.contact")}
+          </h2>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
             {contactCards.map((card) => (
               <a
                 key={card.label}
@@ -85,18 +93,38 @@ export default function ContactClient() {
             ))}
           </div>
           <p className="mt-4 text-sm text-gray-500">{t("contact.noPhone")}</p>
+          <div className="mt-8 h-80 overflow-hidden border border-gray-200 shadow-sm sm:h-96">
+            <iframe
+              src="https://maps.google.com/maps?q=Kileleshwa%2C%20Nairobi%2C%20Kenya&output=embed"
+              title={`${t("contact.address")}: ${t("common.location")}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              className="size-full border-0"
+            />
+          </div>
         </div>
       </div>
 
       <div className="relative flex flex-col items-center overflow-hidden bg-[url(/cn_fbg.png)] bg-center bg-cover px-3 py-16">
         <div className="absolute inset-0 bg-emerald-950/60" />
         <div className="relative z-10 w-full max-w-170 text-center">
-          <h2 className="mb-3 text-3xl font-semibold text-white">{t("contact.form")}</h2>
-          <p className="mb-8 text-base text-white/90">{t("contact.description")}</p>
+          <h2 className="mb-3 text-3xl font-semibold text-white">
+            {t("contact.form")}
+          </h2>
+          <p className="mb-8 text-base text-white/90">
+            {t("contact.description")}
+          </p>
 
-          <form onSubmit={handleSubmit} className="bg-white p-5 text-left shadow-xl md:p-10">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-5 text-left shadow-xl md:p-10"
+          >
             <div className="mb-5">
-              <label htmlFor="contact-name" className="mb-2 block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="contact-name"
+                className="mb-2 block text-sm font-medium text-gray-700"
+              >
                 {t("contact.name")}
               </label>
               <input
@@ -113,7 +141,10 @@ export default function ContactClient() {
             </div>
 
             <div className="mb-5">
-              <label htmlFor="contact-email" className="mb-2 block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="contact-email"
+                className="mb-2 block text-sm font-medium text-gray-700"
+              >
                 {t("contact.emailField")}
                 <span className="text-red-600"> *</span>
               </label>
@@ -132,7 +163,10 @@ export default function ContactClient() {
             </div>
 
             <div className="mb-7">
-              <label htmlFor="contact-message" className="mb-2 block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="contact-message"
+                className="mb-2 block text-sm font-medium text-gray-700"
+              >
                 {t("contact.message")}
                 <span className="text-red-600"> *</span>
               </label>
@@ -161,5 +195,5 @@ export default function ContactClient() {
         </div>
       </div>
     </div>
-  )
+  );
 }
