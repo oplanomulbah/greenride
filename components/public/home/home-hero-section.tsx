@@ -106,7 +106,7 @@ const slides: SlideData[] = [
   },
 ];
 
-const INTRO_VIDEO = "/Electric_car_charging_at_station_20261013213500.mp4";
+const INTRO_VIDEO = "/hero-video.mp4";
 const INTRO_END_DELAY_MS = 750;
 const SLIDE_DURATION_MS = 6500;
 const TOTAL_PRESENTATION_SLIDES = slides.length + 1;

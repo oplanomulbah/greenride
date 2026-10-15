@@ -1,4 +1,4 @@
-import { useState, useRef, type ChangeEvent, type SyntheticEvent } from "react"
+import { useState, useRef, type ChangeEvent, type SyntheticEvent } from "react";
 import {
   Play,
   Pause,
@@ -6,81 +6,83 @@ import {
   VolumeX,
   Maximize,
   Minimize,
-} from "lucide-react"
-import { useLanguage } from "@/contexts/language-context"
-import { translate } from "@/lib/translations"
+} from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
+import { translate } from "@/lib/translations";
 
 export default function VideoPlayer() {
-  const { currentLang } = useLanguage()
+  const { currentLang } = useLanguage();
 
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(0) // value from 0 to 100
-  const [currentTimeSec, setCurrentTimeSec] = useState(0)
-  const [totalDurationSec, setTotalDurationSec] = useState(0)
-  const [isMuted, setIsMuted] = useState(false)
-  const [isFullscreen, setIsFullscreen] = useState(false)
-  const [playbackError, setPlaybackError] = useState<string | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0); // value from 0 to 100
+  const [currentTimeSec, setCurrentTimeSec] = useState(0);
+  const [totalDurationSec, setTotalDurationSec] = useState(0);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [playbackError, setPlaybackError] = useState<string | null>(null);
 
-  const playerRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const playerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlayPause = async () => {
-    const video = videoRef.current
-    if (!video) return
+    const video = videoRef.current;
+    if (!video) return;
 
     if (video.paused) {
-      setPlaybackError(null)
+      setPlaybackError(null);
       try {
-        await video.play()
+        await video.play();
       } catch {
-        setPlaybackError("This video could not be played. Please try again.")
+        setPlaybackError("This video could not be played. Please try again.");
       }
     } else {
-      video.pause()
+      video.pause();
     }
-  }
+  };
 
   const handleScrubberChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const val = parseFloat(e.target.value)
-    const video = videoRef.current
-    if (!video || !Number.isFinite(video.duration)) return
+    const val = parseFloat(e.target.value);
+    const video = videoRef.current;
+    if (!video || !Number.isFinite(video.duration)) return;
 
-    video.currentTime = (val / 100) * video.duration
-    setProgress(val)
-    setCurrentTimeSec(video.currentTime)
-  }
+    video.currentTime = (val / 100) * video.duration;
+    setProgress(val);
+    setCurrentTimeSec(video.currentTime);
+  };
 
   const handleTimeUpdate = (e: SyntheticEvent<HTMLVideoElement>) => {
-    const video = e.currentTarget
-    setCurrentTimeSec(video.currentTime)
-    setProgress(video.duration ? (video.currentTime / video.duration) * 100 : 0)
-  }
+    const video = e.currentTarget;
+    setCurrentTimeSec(video.currentTime);
+    setProgress(
+      video.duration ? (video.currentTime / video.duration) * 100 : 0,
+    );
+  };
 
   const handleLoadedMetadata = (e: SyntheticEvent<HTMLVideoElement>) => {
-    const duration = e.currentTarget.duration
-    setTotalDurationSec(Number.isFinite(duration) ? duration : 0)
-  }
+    const duration = e.currentTarget.duration;
+    setTotalDurationSec(Number.isFinite(duration) ? duration : 0);
+  };
 
   const handleToggleMute = () => {
-    const video = videoRef.current
-    if (!video) return
+    const video = videoRef.current;
+    if (!video) return;
 
-    video.muted = !video.muted
-    setIsMuted(video.muted)
-  }
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
+  };
 
   const formatTime = (seconds: number) => {
-    const wholeSeconds = Math.floor(seconds)
-    const mins = Math.floor(wholeSeconds / 60)
-    const secs = wholeSeconds % 60
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
-  }
+    const wholeSeconds = Math.floor(seconds);
+    const mins = Math.floor(wholeSeconds / 60);
+    const secs = wholeSeconds % 60;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
 
   const handleToggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen)
-  }
+    setIsFullscreen(!isFullscreen);
+  };
 
-  const textSlogan = translate(currentLang, "home.videoTitle")
+  const textSlogan = translate(currentLang, "home.videoTitle");
 
   return (
     <section className="relative overflow-hidden bg-emerald-50 py-16">
@@ -102,7 +104,7 @@ export default function VideoPlayer() {
           <div className="relative min-h-0 w-full flex-1 bg-black">
             <video
               ref={videoRef}
-              src="/Electric_car_charging_at_station_20261013213500.mp4"
+              src="/hero-video.mp4"
               poster="/home-hero.jpg"
               preload="metadata"
               playsInline
@@ -115,7 +117,9 @@ export default function VideoPlayer() {
               onPause={() => setIsPlaying(false)}
               onEnded={() => setIsPlaying(false)}
               onError={() =>
-                setPlaybackError("This video could not be loaded. Please try again later.")
+                setPlaybackError(
+                  "This video could not be loaded. Please try again later.",
+                )
               }
             >
               Your browser does not support video playback.
@@ -126,7 +130,8 @@ export default function VideoPlayer() {
                 {textSlogan}
               </h4>
               <p className="mt-1 font-mono text-xs tracking-widest text-white/80 uppercase drop-shadow-md">
-                {translate(currentLang, "home.videoLabel")} • {formatTime(currentTimeSec)}
+                {translate(currentLang, "home.videoLabel")} •{" "}
+                {formatTime(currentTimeSec)}
               </p>
             </div>
 
@@ -214,7 +219,9 @@ export default function VideoPlayer() {
                 <button
                   onClick={handleToggleFullscreen}
                   className="cursor-pointer p-1 transition-colors hover:text-emerald-300"
-                  aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+                  aria-label={
+                    isFullscreen ? "Exit fullscreen" : "Enter fullscreen"
+                  }
                   id="ctrl-fullscreen"
                 >
                   {isFullscreen ? (
@@ -229,5 +236,5 @@ export default function VideoPlayer() {
         </div>
       </div>
     </section>
-  )
+  );
 }
