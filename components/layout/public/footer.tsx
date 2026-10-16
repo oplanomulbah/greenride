@@ -52,9 +52,9 @@ export default function Footer() {
             </h2>
             <a
               className="text-sm text-emerald-50/80 transition-colors hover:text-white"
-              href="mailto:greenride@kencharge.com"
+              href="mailto:info@donargreenride.com"
             >
-              greenride@kencharge.com
+              info@donargreenride.com
             </a>
             <p className="mt-3 text-sm text-emerald-50/80">
               {t("common.location")}

@@ -170,10 +170,10 @@ export default function HomeCta() {
                             : "官方联络邮箱"}
                       </div>
                       <a
-                        href="mailto:greenride@kencharge.com"
+                        href="mailto:info@donargreenride.com"
                         className="text-xs text-emerald-400 hover:underline"
                       >
-                        greenride@kencharge.com
+                        info@donargreenride.com
                       </a>
                     </div>
                   </div>

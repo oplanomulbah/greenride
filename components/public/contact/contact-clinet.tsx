@@ -22,7 +22,7 @@ export default function ContactClient() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
     );
-    window.location.href = `mailto:greenride@kencharge.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@donargreenride.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -45,8 +45,8 @@ export default function ContactClient() {
     {
       icon: <Mail className="size-6 text-white" />,
       label: t("contact.email"),
-      detail: "greenride@kencharge.com",
-      href: "mailto:greenride@kencharge.com",
+      detail: "info@donargreenride.com",
+      href: "mailto:info@donargreenride.com",
     },
     {
       icon: <MapPin className="size-6 text-white" />,
